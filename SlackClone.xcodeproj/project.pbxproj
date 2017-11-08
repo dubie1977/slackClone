@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C17CB0E61FB3C9BB00C14A6B /* NSButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17CB0E51FB3C9BB00C14A6B /* NSButton.swift */; };
 		C1CB80191FB23C30002DAD97 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CB80181FB23C30002DAD97 /* AppDelegate.swift */; };
 		C1CB801D1FB23C30002DAD97 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C1CB801C1FB23C30002DAD97 /* Assets.xcassets */; };
 		C1CB80201FB23C30002DAD97 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1CB801E1FB23C30002DAD97 /* Main.storyboard */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C17CB0E51FB3C9BB00C14A6B /* NSButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSButton.swift; sourceTree = "<group>"; };
 		C1CB80151FB23C30002DAD97 /* SlackClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SlackClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1CB80181FB23C30002DAD97 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C1CB801C1FB23C30002DAD97 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 			isa = PBXGroup;
 			children = (
 				C1CB80341FB272A3002DAD97 /* Constants.swift */,
+				C17CB0E51FB3C9BB00C14A6B /* NSButton.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -184,6 +187,7 @@
 				C1CB802E1FB26D73002DAD97 /* ChannelVC.swift in Sources */,
 				C1CB80191FB23C30002DAD97 /* AppDelegate.swift in Sources */,
 				C1CB80321FB27004002DAD97 /* MainWindowController.swift in Sources */,
+				C17CB0E61FB3C9BB00C14A6B /* NSButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
