@@ -716,6 +716,23 @@
                                     <segue destination="0hp-Pc-7FN" kind="embed" id="0LX-Ws-Uqi"/>
                                 </connections>
                             </containerView>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LrT-5N-vJP">
+                                <rect key="frame" x="425" y="233" width="37" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Login" id="4zQ-ZF-HCd">
+                                    <font key="font" size="13" name="AvenirNext-Regular"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HsN-ke-mWi">
+                                <rect key="frame" x="371" y="218" width="48" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="24" id="a7A-7t-a37"/>
+                                    <constraint firstAttribute="width" constant="24" id="hNA-z7-1wr"/>
+                                </constraints>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="1ko-V5-Jyh"/>
+                            </imageView>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="ntc-iQ-EFb" secondAttribute="trailing" id="XBN-nQ-Hhi"/>
