@@ -12,11 +12,17 @@ class ModalLogin: NSView {
 
     // Outlets
     @IBOutlet weak var view : NSView!
+    @IBOutlet weak var userNameTxt: NSTextField!
+    @IBOutlet weak var passwordTxt: NSSecureTextField!
+    @IBOutlet weak var emailLoginBtn: NSButton!
+    @IBOutlet weak var createAccountBtn: NSButton!
+    @IBOutlet weak var loginStackView: NSStackView!
+    
     
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
         Bundle.main.loadNibNamed(NSNib.Name(rawValue: "ModalLogin"), owner: self, topLevelObjects: nil)
-        self.view.frame = NSRect(x: 0, y: 0, width: 475, height: 300)
+        
         self.addSubview(self.view)
     }
     
@@ -30,8 +36,28 @@ class ModalLogin: NSView {
     }
 
     func setupView(){
+        self.view.frame = NSRect(x: 0, y: 0, width: 475, height: 300)
         view.layer?.backgroundColor = CGColor.white
         view.layer?.cornerRadius = 7
+        
+        emailLoginBtn.styleButtonText(button: emailLoginBtn, buttonName: "Login", fontColor: .white, alignment: .center, font: AVENIR_REGULAR, size: 14.0)
+        emailLoginBtn.layer?.backgroundColor = chatGreen.cgColor
+        emailLoginBtn.layer?.cornerRadius = 7
+        
+        createAccountBtn.styleButtonText(button: createAccountBtn, buttonName: "Create Account", fontColor: chatGreen, alignment: .center, font: AVENIR_REGULAR, size: 12.0)
+        //createAccountBtn.layer?.backgroundColor = chatGreen.cgColor
+        
+        
+    }
+    
+    @IBAction func closeModelClicked(_ sender: Any) {
+        
+    }
+    
+    @IBAction func emailLoginBtnClicked(_ sender: Any) {
+    }
+    
+    @IBAction func createAccountBtnClicked(_ sender: Any) {
     }
     
     

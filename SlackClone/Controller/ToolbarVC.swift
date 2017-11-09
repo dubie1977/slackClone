@@ -107,11 +107,16 @@ class ToolbarVC: NSViewController {
         NSAnimationContext.runAnimationGroup({(context) in
             context.duration = 0.5
             modalBGView.animator().alphaValue = 0.0
+            modalView.animator().alphaValue = 0.0
             self.view.layoutSubtreeIfNeeded()
         }, completionHandler: {
             if self.modalBGView != nil {
                 self.modalBGView.removeFromSuperview()
                 self.modalBGView = nil
+            }
+            if self.modalView != nil {
+                self.modalView.removeFromSuperview()
+                self.modalView = nil
             }
         })
     }
