@@ -21,6 +21,7 @@ class ToolbarVC: NSViewController {
     
     // Variables
     var modalBGView : ClickBlockingView!
+    var modalView : NSView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,6 +49,9 @@ class ToolbarVC: NSViewController {
     }
     
     @objc func presentModal(_ notif: Notification){
+        var modalWidth = CGFloat(0.0)
+        var modalHeight = CGFloat(0.0)
+        
         if modalBGView == nil {
             modalBGView = ClickBlockingView()
             modalBGView.translatesAutoresizingMaskIntoConstraints = false
@@ -63,11 +67,34 @@ class ToolbarVC: NSViewController {
             
             let closeBackgroundClick = NSClickGestureRecognizer(target: self, action: #selector(ToolbarVC.closeModalClick(_:)))
             modalBGView.addGestureRecognizer(closeBackgroundClick)
+            
+            //Setup XIB
+            guard let modalType = notif.userInfo?[USER_INFO_MODAL] as? ModalType else{ return }
+            
+            switch modalType {
+            case ModalType.login:
+                modalView = ModalLogin()
+                modalWidth = 475
+                modalHeight = 300
+            }
+            
+            modalView.wantsLayer = true
+            modalView.translatesAutoresizingMaskIntoConstraints = false
+            modalView.alphaValue = 0
+            view.addSubview(modalView, positioned: .above, relativeTo: modalBGView)
+            
+            let horizontalConstraint = modalView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+            let verticalConstraint = modalView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+            let widthConstraint = modalView.widthAnchor.constraint(equalToConstant: modalWidth)
+            let heightConstraint = modalView.heightAnchor.constraint(equalToConstant: modalHeight)
+            
+            NSLayoutConstraint.activate([horizontalConstraint, verticalConstraint, widthConstraint, heightConstraint])
         }
         
         NSAnimationContext.runAnimationGroup({ (context) in
             context.duration = 0.5
             modalBGView.animator().alphaValue = 0.6
+            modalView.animator().alphaValue = 1.0
             self.view.layoutSubtreeIfNeeded()
         }, completionHandler:  nil)
     }
