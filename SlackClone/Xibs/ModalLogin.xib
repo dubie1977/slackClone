@@ -24,10 +24,10 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="12" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lfn-Ia-m1w">
-                    <rect key="frame" x="137.5" y="76" width="200" height="148"/>
+                    <rect key="frame" x="137.5" y="83.5" width="200" height="133"/>
                     <subviews>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="31v-3K-Oaa">
-                            <rect key="frame" x="66" y="116" width="68" height="32"/>
+                            <rect key="frame" x="66" y="101" width="68" height="32"/>
                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Sign In" id="cV3-um-5RN">
                                 <font key="font" size="19" name="AvenirNext-Bold"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -35,18 +35,21 @@
                             </textFieldCell>
                         </textField>
                         <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ftj-3c-69V" userLabel="email stack view">
-                            <rect key="frame" x="0.0" y="80" width="200" height="24"/>
+                            <rect key="frame" x="0.0" y="65" width="200" height="24"/>
                             <subviews>
-                                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xTm-Nd-9Or" userLabel="email">
+                                <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xTm-Nd-9Or" userLabel="email">
                                     <rect key="frame" x="-2" y="1" width="204" height="23"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="200" id="0Jj-5O-eWx"/>
                                     </constraints>
-                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" placeholderString="Email" id="lsW-Sd-pyU">
+                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" focusRingType="none" placeholderString="Email" id="lsW-Sd-pyU">
                                         <font key="font" size="13" name="AvenirNext-Regular"/>
                                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
+                                    <connections>
+                                        <outlet property="nextKeyView" destination="W2N-hh-Iwn" id="HGQ-pi-d6w"/>
+                                    </connections>
                                 </textField>
                                 <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="x8S-jw-pvz">
                                     <rect key="frame" x="0.0" y="-2" width="200" height="5"/>
@@ -65,14 +68,14 @@
                             </customSpacing>
                         </stackView>
                         <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Yhw-8V-xaE" userLabel="password stack view">
-                            <rect key="frame" x="0.0" y="44" width="200" height="24"/>
+                            <rect key="frame" x="0.0" y="29" width="200" height="24"/>
                             <subviews>
-                                <secureTextField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="W2N-hh-Iwn" userLabel="password">
+                                <secureTextField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="W2N-hh-Iwn" userLabel="password">
                                     <rect key="frame" x="-2" y="1" width="204" height="23"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="200" id="hPf-Xc-OSO"/>
                                     </constraints>
-                                    <secureTextFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" placeholderString="Password" usesSingleLineMode="YES" id="Ebi-BS-tdV" userLabel="Text Field Cell">
+                                    <secureTextFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" focusRingType="none" placeholderString="Password" usesSingleLineMode="YES" id="Ebi-BS-tdV" userLabel="Text Field Cell">
                                         <font key="font" size="13" name="AvenirNext-Regular"/>
                                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -80,6 +83,9 @@
                                             <string>NSAllRomanInputSourcesLocaleIdentifier</string>
                                         </allowedInputSourceLocales>
                                     </secureTextFieldCell>
+                                    <connections>
+                                        <outlet property="nextKeyView" destination="RHv-pw-WCR" id="6yL-rP-1wB"/>
+                                    </connections>
                                 </secureTextField>
                                 <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="r2F-yc-htY">
                                     <rect key="frame" x="0.0" y="-2" width="200" height="5"/>
@@ -98,16 +104,17 @@
                             </customSpacing>
                         </stackView>
                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="RHv-pw-WCR">
-                            <rect key="frame" x="0.0" y="0.0" width="200" height="32"/>
+                            <rect key="frame" x="0.0" y="0.0" width="200" height="17"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="200" id="QrJ-uc-iRD"/>
                             </constraints>
-                            <buttonCell key="cell" type="bevel" title="Login" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="n9V-np-tVZ">
+                            <buttonCell key="cell" type="bevel" title="Login" bezelStyle="regularSquare" alignment="center" imageScaling="proportionallyDown" inset="2" id="n9V-np-tVZ">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" metaFont="system"/>
                             </buttonCell>
                             <connections>
                                 <action selector="emailLoginBtnClicked:" target="-2" id="irO-ij-PLO"/>
+                                <outlet property="nextKeyView" destination="xTm-Nd-9Or" id="Xft-YZ-FpJ"/>
                             </connections>
                         </button>
                     </subviews>
