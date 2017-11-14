@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13196"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
         <capability name="stacking Non-gravity area distributions on NSStackView" minToolsVersion="7.0" minSystemVersion="10.11"/>
     </dependencies>
@@ -708,17 +708,17 @@
             <objects>
                 <viewController id="XfG-lQ-9wD" customClass="ToolbarVC" customModule="SlackClone" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" wantsLayer="YES" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                        <rect key="frame" x="0.0" y="0.0" width="680" height="470"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <containerView translatesAutoresizingMaskIntoConstraints="NO" id="ntc-iQ-EFb">
-                                <rect key="frame" x="0.0" y="0.0" width="480" height="220"/>
+                                <rect key="frame" x="0.0" y="0.0" width="680" height="420"/>
                                 <connections>
                                     <segue destination="0hp-Pc-7FN" kind="embed" id="0LX-Ws-Uqi"/>
                                 </connections>
                             </containerView>
                             <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sr1-aG-hg9">
-                                <rect key="frame" x="398" y="230" width="66" height="24"/>
+                                <rect key="frame" x="598" y="430" width="66" height="24"/>
                                 <subviews>
                                     <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HsN-ke-mWi">
                                         <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
@@ -764,7 +764,7 @@
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="655"/>
+            <point key="canvasLocation" x="75" y="749"/>
         </scene>
         <!--Split View Controller-->
         <scene sceneID="0gM-dH-H1u">
@@ -789,7 +789,7 @@
                 </splitViewController>
                 <customObject id="aHN-Vm-ghS" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="1103"/>
+            <point key="canvasLocation" x="75" y="1312"/>
         </scene>
         <!--ChannelVC-->
         <scene sceneID="NTw-VI-dhA">
@@ -916,7 +916,7 @@
                 </viewController>
                 <customObject id="0aZ-P0-XHc" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="622" y="851"/>
+            <point key="canvasLocation" x="598" y="1192"/>
         </scene>
         <!--ChatVC-->
         <scene sceneID="qmJ-52-uSc">
@@ -1073,7 +1073,7 @@
                 </viewController>
                 <customObject id="5G7-xx-auo" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="747" y="1223"/>
+            <point key="canvasLocation" x="723" y="1559"/>
         </scene>
     </scenes>
     <resources>
