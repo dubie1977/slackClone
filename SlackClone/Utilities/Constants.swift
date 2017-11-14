@@ -36,4 +36,8 @@ let BASE_URL = "https://slackclone1977.herokuapp.com/v1/"
 let URL_REGISTER = "\(BASE_URL)account/register"
 let URL_LOGIN = "\(BASE_URL)account/login"
 
+// Haders
+let HEADER = ["Content-Type": "application/json; charset=utf-8"]
+
+
 typealias CompleationHandeler = (_ Success: Bool) -> ()
