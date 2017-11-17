@@ -8,6 +8,7 @@
 
 import Foundation
 import Alamofire
+import SwiftyJSON
 
 class AuthService{
     
@@ -72,6 +73,20 @@ class AuthService{
         Alamofire.request(URL_LOGIN, method: .post, parameters: body, encoding: JSONEncoding.default, headers: HEADER).responseJSON { (response) in
             
             if response.result.error == nil{
+                guard let data = response.data else { return }
+                do{
+                    let json = try JSON(data: data)
+                    let userEmail =  json["user"].stringValue
+                    let authToken =  json["token"].stringValue
+                    self.authToken = authToken
+                    self.userEmail = userEmail
+                    self.isLoggedIn = true
+                    completion(true)
+                } catch {
+                    debugPrint(error)
+                    return
+                }
+                
                 
             } else {
                 completion(false)
@@ -79,4 +94,54 @@ class AuthService{
             }
         }
     }
+    
+    func createUser(name: String, email: String, avatarName: String, avatarColor: String, completion: @escaping CompleationHandeler) {
+        
+        let lowerCaseEmail = email.lowercased()
+        
+        let header = [
+            "Authorization":"Bearer \(authToken)",
+            "Content-Type" : "application/json; charset=utf-8"
+        ]
+        
+        let body: [String: Any] = [
+            "name" : name,
+            "email": lowerCaseEmail,
+            "avatarName" : avatarName,
+            "avatarColor" : avatarColor
+        ]
+        
+        Alamofire.request(URL_USER_ADD, method: .post, parameters: body, encoding: JSONEncoding.default, headers: header).responseJSON { (response) in
+            
+            if response.result.error == nil{
+                guard let data = response.data else {return }
+                do{
+                    let json = try JSON(data: data)
+                    let userId = json["_id"].stringValue
+                    let avatarColor = json["avatarColor"].stringValue
+                    let avatarName = json["avatarName"].stringValue
+                    let email = json["email"].stringValue
+                    let userName = json["userName"].stringValue
+                    
+                    UserDataService.instance.name = userName
+                    UserDataService.instance.id = userId
+                    UserDataService.instance.avatarColor = avatarColor
+                    UserDataService.instance.avatarName = avatarName
+                    UserDataService.instance.email = email
+                    completion(true)
+                } catch {
+                    debugPrint(error)
+                    return
+                }
+            } else {
+                completion(false)
+                debugPrint(response.result.error as Any)
+            }
+        }
+        
+    }
+    
+    
+    
+    
 }

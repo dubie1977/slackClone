@@ -13,6 +13,7 @@
 		8CCA6DE61FB4FA29009C2F08 /* ModalLogin.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CCA6DE51FB4FA29009C2F08 /* ModalLogin.xib */; };
 		8CCA6DE81FB4FAA9009C2F08 /* ModalLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCA6DE71FB4FAA9009C2F08 /* ModalLogin.swift */; };
 		C15A73231FBA5BB800830756 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15A73221FBA5BB800830756 /* AuthService.swift */; };
+		C15A73251FBE5E2A00830756 /* UserDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15A73241FBE5E2A00830756 /* UserDataService.swift */; };
 		C17CB0E61FB3C9BB00C14A6B /* NSButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17CB0E51FB3C9BB00C14A6B /* NSButton.swift */; };
 		C1CB80191FB23C30002DAD97 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CB80181FB23C30002DAD97 /* AppDelegate.swift */; };
 		C1CB801D1FB23C30002DAD97 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C1CB801C1FB23C30002DAD97 /* Assets.xcassets */; };
@@ -34,6 +35,7 @@
 		8CCA6DE51FB4FA29009C2F08 /* ModalLogin.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ModalLogin.xib; sourceTree = "<group>"; };
 		8CCA6DE71FB4FAA9009C2F08 /* ModalLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalLogin.swift; sourceTree = "<group>"; };
 		C15A73221FBA5BB800830756 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		C15A73241FBE5E2A00830756 /* UserDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataService.swift; sourceTree = "<group>"; };
 		C17CB0E51FB3C9BB00C14A6B /* NSButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSButton.swift; sourceTree = "<group>"; };
 		C1CB80151FB23C30002DAD97 /* SlackClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SlackClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1CB80181FB23C30002DAD97 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -108,6 +110,7 @@
 			isa = PBXGroup;
 			children = (
 				C15A73221FBA5BB800830756 /* AuthService.swift */,
+				C15A73241FBE5E2A00830756 /* UserDataService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -310,6 +313,7 @@
 				C1CB802C1FB26BFF002DAD97 /* ToolbarVC.swift in Sources */,
 				C1CB802E1FB26D73002DAD97 /* ChannelVC.swift in Sources */,
 				C15A73231FBA5BB800830756 /* AuthService.swift in Sources */,
+				C15A73251FBE5E2A00830756 /* UserDataService.swift in Sources */,
 				8CCA6DE41FB4CB93009C2F08 /* ClickBlockingView.swift in Sources */,
 				C1CB80191FB23C30002DAD97 /* AppDelegate.swift in Sources */,
 				C1CB80321FB27004002DAD97 /* MainWindowController.swift in Sources */,
