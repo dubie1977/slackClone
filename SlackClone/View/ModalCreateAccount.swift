@@ -63,7 +63,19 @@ class ModalCreateAccount: NSView {
         NotificationCenter.default.post(name: NOTIF_CLOSE_MODAL, object: nil)
     }
     @IBAction func createAccountClicked(_ sender: Any) {
+        AuthService.instance.registerUser(email: emailTxt.stringValue, password: passwordTxt.stringValue) { (success) in
+            if success {
+                AuthService.instance.loginUser(email: self.emailTxt.stringValue, password: self.passwordTxt.stringValue, completion: { (success) in
+                    if success {
+                        AuthService.instance.createUser(name: self.nameTxt.stringValue, email: self.emailTxt.stringValue, avatarName: "dark5", avatarColor: "", completion: { (success) in
+                            NotificationCenter.default.post(name: NOTIF_CLOSE_MODAL, object: nil)
+                        })
+                    }
+                })
+            }
+        }
     }
+    
     @IBAction func chooseImageClicked(_ sender: Any) {
     }
     
