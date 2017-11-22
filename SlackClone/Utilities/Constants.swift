@@ -24,6 +24,7 @@ let USER_INFO_REMOVE_IMMEDIATELY = "modalRemoveImmediately"
 
 let NOTIF_PRESENT_MODAL = Notification.Name("presentModal")
 let NOTIF_CLOSE_MODAL = Notification.Name("CloseModal")
+let NOTIF_USER_DATA_DID_CHANGE = Notification.Name("userDataDidChange")
 
 
 // User Defaults

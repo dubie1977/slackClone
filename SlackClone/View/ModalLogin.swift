@@ -61,6 +61,7 @@ class ModalLogin: NSView {
                 AuthService.instance.findUserByEmail(completion: { (success) in
                     if success {
                         NotificationCenter.default.post(name: NOTIF_CLOSE_MODAL, object: nil)
+                        NotificationCenter.default.post(name: NOTIF_USER_DATA_DID_CHANGE, object: nil)
                         Swift.debugPrint("AuthService_email:\(AuthService.instance.userEmail)")
                         Swift.debugPrint("AuthService_token:\(AuthService.instance.authToken)")
                         Swift.debugPrint("UserService_email:\(UserDataService.instance.email)")
