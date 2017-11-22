@@ -18,7 +18,9 @@ class AuthService{
     
     var isLoggedIn: Bool {
         get {
-            return defaults.bool(forKey: LOGGED_IN_KEY)
+            let isLogged = defaults.bool(forKey: LOGGED_IN_KEY)
+            debugPrint(isLogged)
+            return isLogged
         } set {
             defaults.set(newValue, forKey: LOGGED_IN_KEY)
         }
