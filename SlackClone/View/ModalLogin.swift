@@ -55,6 +55,24 @@ class ModalLogin: NSView {
     }
     
     @IBAction func emailLoginBtnClicked(_ sender: Any) {
+        
+        AuthService.instance.loginUser(email: userNameTxt.stringValue.lowercased(), password: passwordTxt.stringValue) { (success) in
+            if success {
+                AuthService.instance.findUserByEmail(completion: { (success) in
+                    if success {
+                        NotificationCenter.default.post(name: NOTIF_CLOSE_MODAL, object: nil)
+                        Swift.debugPrint("AuthService_email:\(AuthService.instance.userEmail)")
+                        Swift.debugPrint("AuthService_token:\(AuthService.instance.authToken)")
+                        Swift.debugPrint("UserService_email:\(UserDataService.instance.email)")
+                        Swift.debugPrint("UserService_name:\(UserDataService.instance.name)")
+                    } else {
+                        Swift.debugPrint("Find user failed")
+                    }
+                })
+            } else {
+                Swift.debugPrint("Login failed")
+            }
+        }
     }
     
     @IBAction func createAccountBtnClicked(_ sender: Any) {

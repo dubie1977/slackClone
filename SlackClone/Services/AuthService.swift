@@ -76,10 +76,8 @@ class AuthService{
                 guard let data = response.data else { return }
                 do{
                     let json = try JSON(data: data)
-                    let userEmail =  json["user"].stringValue
-                    let authToken =  json["token"].stringValue
-                    self.authToken = authToken
-                    self.userEmail = userEmail
+                    self.userEmail =  json["user"].stringValue
+                    self.authToken =  json["token"].stringValue
                     self.isLoggedIn = true
                     completion(true)
                 } catch {
@@ -99,10 +97,7 @@ class AuthService{
         
         let lowerCaseEmail = email.lowercased()
         
-        let header = [
-            "Authorization":"Bearer \(authToken)",
-            "Content-Type" : "application/json; charset=utf-8"
-        ]
+        
         
         let body: [String: Any] = [
             "name" : name,
@@ -111,28 +106,12 @@ class AuthService{
             "avatarColor" : avatarColor
         ]
         
-        Alamofire.request(URL_USER_ADD, method: .post, parameters: body, encoding: JSONEncoding.default, headers: header).responseJSON { (response) in
+        Alamofire.request(URL_USER_ADD, method: .post, parameters: body, encoding: JSONEncoding.default, headers: BEARER_HEADER).responseJSON { (response) in
             
             if response.result.error == nil{
                 guard let data = response.data else {return }
-                do{
-                    let json = try JSON(data: data)
-                    let userId = json["_id"].stringValue
-                    let avatarColor = json["avatarColor"].stringValue
-                    let avatarName = json["avatarName"].stringValue
-                    let email = json["email"].stringValue
-                    let userName = json["userName"].stringValue
-                    
-                    UserDataService.instance.name = userName
-                    UserDataService.instance.id = userId
-                    UserDataService.instance.avatarColor = avatarColor
-                    UserDataService.instance.avatarName = avatarName
-                    UserDataService.instance.email = email
-                    completion(true)
-                } catch {
-                    debugPrint(error)
-                    return
-                }
+                self.setUserInfo(data: data)
+                completion(true)
             } else {
                 completion(false)
                 debugPrint(response.result.error as Any)
@@ -141,7 +120,33 @@ class AuthService{
         
     }
     
+    func findUserByEmail(completion: @escaping CompleationHandeler){
+        debugPrint("\(URL_USER_BY_EMAIL)\(userEmail)")
+        Alamofire.request("\(URL_USER_BY_EMAIL)\(userEmail)", method: .get, parameters: nil, encoding: JSONEncoding.default, headers: BEARER_HEADER).responseJSON { (response) in
+            if response.result.error == nil {
+                guard let data = response.data else {return}
+                self.setUserInfo(data: data)
+                completion(true)
+            } else {
+                completion(false)
+                debugPrint(response.result.error as Any)
+            }
+        }
+    }
     
+    func setUserInfo(data: Data){
+        do{
+            let json = try JSON(data: data)
+            UserDataService.instance.id = json["_id"].stringValue
+            UserDataService.instance.avatarColor = json["avatarColor"].stringValue
+            UserDataService.instance.avatarName = json["avatarName"].stringValue
+            UserDataService.instance.email = json["email"].stringValue
+            UserDataService.instance.name = json["name"].stringValue
+        } catch {
+            debugPrint(error)
+            return
+        }
+    }
     
     
 }
