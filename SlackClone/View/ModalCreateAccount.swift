@@ -59,19 +59,42 @@ class ModalCreateAccount: NSView {
         emailTxt.focusRingType = .none
     }
     
+    func waitForLogin(loginIn: Bool){
+        if loginIn {
+            progressSpinner.isHidden = false
+            progressSpinner.startAnimation(nil)
+            stackView.alphaValue = 0.4
+            createAccountBtn.isEnabled = false
+        } else {
+            progressSpinner.isHidden = true
+            progressSpinner.stopAnimation(nil)
+            stackView.alphaValue = 1
+            createAccountBtn.isEnabled = true
+        }
+    }
+    
     @IBAction func closeModalClicked(_ sender: Any) {
         NotificationCenter.default.post(name: NOTIF_CLOSE_MODAL, object: nil)
     }
     @IBAction func createAccountClicked(_ sender: Any) {
+        waitForLogin(loginIn: true)
         AuthService.instance.registerUser(email: emailTxt.stringValue, password: passwordTxt.stringValue) { (success) in
             if success {
                 AuthService.instance.loginUser(email: self.emailTxt.stringValue, password: self.passwordTxt.stringValue, completion: { (success) in
                     if success {
                         AuthService.instance.createUser(name: self.nameTxt.stringValue, email: self.emailTxt.stringValue, avatarName: "dark5", avatarColor: "", completion: { (success) in
+                            self.waitForLogin(loginIn: false)
+                            NotificationCenter.default.post(name: NOTIF_USER_DATA_DID_CHANGE, object: nil)
                             NotificationCenter.default.post(name: NOTIF_CLOSE_MODAL, object: nil)
                         })
+                    } else {
+                        debugPrint("Login user Failed")
+                        self.waitForLogin(loginIn: false)
                     }
                 })
+            } else {
+                debugPrint("Registered user Failed")
+                self.waitForLogin(loginIn: false)
             }
         }
     }

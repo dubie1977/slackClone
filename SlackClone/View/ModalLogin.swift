@@ -17,6 +17,7 @@ class ModalLogin: NSView {
     @IBOutlet weak var emailLoginBtn: NSButton!
     @IBOutlet weak var createAccountBtn: NSButton!
     @IBOutlet weak var loginStackView: NSStackView!
+    @IBOutlet weak var progressSpinner: NSProgressIndicator!
     
     
     override init(frame frameRect: NSRect) {
@@ -50,8 +51,23 @@ class ModalLogin: NSView {
         
     }
     
+    func waitForLogin(loginIn: Bool){
+        if loginIn {
+            progressSpinner.isHidden = false
+            progressSpinner.startAnimation(nil)
+            loginStackView.alphaValue = 0.4
+            emailLoginBtn.isEnabled = false
+        } else {
+            progressSpinner.isHidden = true
+            progressSpinner.stopAnimation(nil)
+            loginStackView.alphaValue = 1
+            emailLoginBtn.isEnabled = true
+        }
+    }
+    
     func loginUser(){
         if !( userNameTxt.stringValue.isEmpty || passwordTxt.stringValue.isEmpty) {
+            waitForLogin(loginIn: true)
             AuthService.instance.loginUser(email: userNameTxt.stringValue.lowercased(), password: passwordTxt.stringValue) { (success) in
                 if success {
                     AuthService.instance.findUserByEmail(completion: { (success) in
@@ -61,9 +77,11 @@ class ModalLogin: NSView {
                         } else {
                             Swift.debugPrint("Find user failed")
                         }
+                        self.waitForLogin(loginIn: false)
                     })
                 } else {
                     Swift.debugPrint("Login failed")
+                    self.waitForLogin(loginIn: false)
                 }
             }
         } else {
@@ -82,7 +100,7 @@ class ModalLogin: NSView {
         NotificationCenter.default.post(name: NOTIF_CLOSE_MODAL, object: nil)
     }
     @IBAction func loginSentByEnterKey(_ sender: Any) {
-        loginUser()
+        emailLoginBtn.performClick(nil)
     }
     
     @IBAction func emailLoginBtnClicked(_ sender: Any) {

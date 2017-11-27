@@ -13,6 +13,7 @@
                 <outlet property="emailLoginBtn" destination="RHv-pw-WCR" id="yiY-Kv-o0c"/>
                 <outlet property="loginStackView" destination="lfn-Ia-m1w" id="zV2-xS-Xfx"/>
                 <outlet property="passwordTxt" destination="W2N-hh-Iwn" id="xVr-aL-j4L"/>
+                <outlet property="progressSpinner" destination="Z3L-RH-2yT" id="BWT-IN-XGH"/>
                 <outlet property="userNameTxt" destination="xTm-Nd-9Or" id="Hy6-Qw-5Te"/>
                 <outlet property="view" destination="c22-O7-iKe" id="8VP-8q-ZNI"/>
             </connections>
@@ -42,7 +43,7 @@
                                     <constraints>
                                         <constraint firstAttribute="width" constant="200" id="0Jj-5O-eWx"/>
                                     </constraints>
-                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" focusRingType="none" placeholderString="Email" id="lsW-Sd-pyU">
+                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" focusRingType="none" placeholderString="Email" id="lsW-Sd-pyU">
                                         <font key="font" size="13" name="AvenirNext-Regular"/>
                                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -157,6 +158,9 @@
                         <action selector="createAccountBtnClicked:" target="-2" id="IBD-gV-6Y8"/>
                     </connections>
                 </button>
+                <progressIndicator hidden="YES" wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" bezeled="NO" indeterminate="YES" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="Z3L-RH-2yT">
+                    <rect key="frame" x="222" y="134" width="32" height="32"/>
+                </progressIndicator>
             </subviews>
             <constraints>
                 <constraint firstItem="TZq-yr-ctw" firstAttribute="centerX" secondItem="c22-O7-iKe" secondAttribute="centerX" id="1uC-9k-yDJ"/>
@@ -164,7 +168,9 @@
                 <constraint firstItem="T8h-Er-E3A" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="6" id="BwR-t7-6oR"/>
                 <constraint firstItem="lfn-Ia-m1w" firstAttribute="centerY" secondItem="c22-O7-iKe" secondAttribute="centerY" id="ImZ-tU-Uw4"/>
                 <constraint firstAttribute="trailing" secondItem="T8h-Er-E3A" secondAttribute="trailing" constant="6" id="IqQ-1j-swb"/>
+                <constraint firstItem="Z3L-RH-2yT" firstAttribute="centerY" secondItem="c22-O7-iKe" secondAttribute="centerY" id="Rkk-9k-OYA"/>
                 <constraint firstItem="lfn-Ia-m1w" firstAttribute="centerX" secondItem="c22-O7-iKe" secondAttribute="centerX" id="TU8-uv-NVh"/>
+                <constraint firstItem="Z3L-RH-2yT" firstAttribute="centerX" secondItem="c22-O7-iKe" secondAttribute="centerX" id="WaD-bR-phK"/>
             </constraints>
         </customView>
     </objects>
