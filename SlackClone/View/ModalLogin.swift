@@ -50,30 +50,43 @@ class ModalLogin: NSView {
         
     }
     
+    func loginUser(){
+        if !( userNameTxt.stringValue.isEmpty || passwordTxt.stringValue.isEmpty) {
+            AuthService.instance.loginUser(email: userNameTxt.stringValue.lowercased(), password: passwordTxt.stringValue) { (success) in
+                if success {
+                    AuthService.instance.findUserByEmail(completion: { (success) in
+                        if success {
+                            NotificationCenter.default.post(name: NOTIF_CLOSE_MODAL, object: nil)
+                            NotificationCenter.default.post(name: NOTIF_USER_DATA_DID_CHANGE, object: nil)
+                        } else {
+                            Swift.debugPrint("Find user failed")
+                        }
+                    })
+                } else {
+                    Swift.debugPrint("Login failed")
+                }
+            }
+        } else {
+            if userNameTxt.stringValue.isEmpty && passwordTxt.stringValue.isEmpty{
+                debugPrint("No user name or password")
+            }else if userNameTxt.stringValue.isEmpty{
+                debugPrint("No user name")
+            } else {
+                debugPrint("No password")
+            }
+            
+        }
+    }
+    
     @IBAction func closeModelClicked(_ sender: Any) {
         NotificationCenter.default.post(name: NOTIF_CLOSE_MODAL, object: nil)
     }
+    @IBAction func loginSentByEnterKey(_ sender: Any) {
+        loginUser()
+    }
     
     @IBAction func emailLoginBtnClicked(_ sender: Any) {
-        
-        AuthService.instance.loginUser(email: userNameTxt.stringValue.lowercased(), password: passwordTxt.stringValue) { (success) in
-            if success {
-                AuthService.instance.findUserByEmail(completion: { (success) in
-                    if success {
-                        NotificationCenter.default.post(name: NOTIF_CLOSE_MODAL, object: nil)
-                        NotificationCenter.default.post(name: NOTIF_USER_DATA_DID_CHANGE, object: nil)
-                        Swift.debugPrint("AuthService_email:\(AuthService.instance.userEmail)")
-                        Swift.debugPrint("AuthService_token:\(AuthService.instance.authToken)")
-                        Swift.debugPrint("UserService_email:\(UserDataService.instance.email)")
-                        Swift.debugPrint("UserService_name:\(UserDataService.instance.name)")
-                    } else {
-                        Swift.debugPrint("Find user failed")
-                    }
-                })
-            } else {
-                Swift.debugPrint("Login failed")
-            }
-        }
+        loginUser()
     }
     
     @IBAction func createAccountBtnClicked(_ sender: Any) {

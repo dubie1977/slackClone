@@ -19,7 +19,6 @@ class AuthService{
     var isLoggedIn: Bool {
         get {
             let isLogged = defaults.bool(forKey: LOGGED_IN_KEY)
-            debugPrint(isLogged)
             return isLogged
         } set {
             defaults.set(newValue, forKey: LOGGED_IN_KEY)
@@ -123,7 +122,6 @@ class AuthService{
     }
     
     func findUserByEmail(completion: @escaping CompleationHandeler){
-        debugPrint("\(URL_USER_BY_EMAIL)\(userEmail)")
         Alamofire.request("\(URL_USER_BY_EMAIL)\(userEmail)", method: .get, parameters: nil, encoding: JSONEncoding.default, headers: BEARER_HEADER).responseJSON { (response) in
             if response.result.error == nil {
                 guard let data = response.data else {return}

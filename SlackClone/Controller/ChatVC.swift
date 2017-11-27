@@ -43,18 +43,37 @@ class ChatVC: NSViewController {
         messageOutlineView.layer?.cornerRadius = 5
         
         sendMessageBtn.styleButtonText(button: sendMessageBtn, buttonName: "Send", fontColor: .darkGray, alignment: .center, font: AVENIR_REGULAR, size: 13.0)
+        
+        setTextField()
+    }
+    
+    func setTextField(){
+        if AuthService.instance.isLoggedIn {
+            messageTxt.isEditable = true
+        } else {
+            messageTxt.isEditable = false
+        }
     }
     
     @IBAction func sendMessageButtonClicked(_ sender: Any) {
         print("send message clicked")
+        if AuthService.instance.isLoggedIn {
+            //send msg
+        } else {
+            let modalDict = [USER_INFO_MODAL: ModalType.login]
+            NotificationCenter.default.post(name: NOTIF_PRESENT_MODAL, object: nil, userInfo: modalDict)
+        }
     }
     
     @objc func userDataDidChange(_ notif: Notification){
         if AuthService.instance.isLoggedIn {
-            
+            channelTitileLbl.stringValue = "#General"
+            channelDescriptionLbl.stringValue = "Main channel"
         } else {
-            
+            channelTitileLbl.stringValue = "Please Login"
+            channelDescriptionLbl.stringValue = ""
         }
+        setTextField()
     }
     
     

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="13529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="13196" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13196"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
         <capability name="stacking Non-gravity area distributions on NSStackView" minToolsVersion="7.0" minSystemVersion="10.11"/>
     </dependencies>
@@ -24,7 +24,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="12" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lfn-Ia-m1w">
-                    <rect key="frame" x="137.5" y="83.5" width="200" height="133"/>
+                    <rect key="frame" x="138" y="84" width="200" height="133"/>
                     <subviews>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="31v-3K-Oaa">
                             <rect key="frame" x="66" y="101" width="68" height="32"/>
@@ -48,6 +48,7 @@
                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
                                     <connections>
+                                        <action selector="loginSentByEnterKey:" target="-2" id="kbi-aR-Emp"/>
                                         <outlet property="nextKeyView" destination="W2N-hh-Iwn" id="HGQ-pi-d6w"/>
                                     </connections>
                                 </textField>
@@ -75,7 +76,7 @@
                                     <constraints>
                                         <constraint firstAttribute="width" constant="200" id="hPf-Xc-OSO"/>
                                     </constraints>
-                                    <secureTextFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" focusRingType="none" placeholderString="Password" usesSingleLineMode="YES" id="Ebi-BS-tdV" userLabel="Text Field Cell">
+                                    <secureTextFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" focusRingType="none" placeholderString="Password" usesSingleLineMode="YES" id="Ebi-BS-tdV" userLabel="Text Field Cell">
                                         <font key="font" size="13" name="AvenirNext-Regular"/>
                                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -84,6 +85,7 @@
                                         </allowedInputSourceLocales>
                                     </secureTextFieldCell>
                                     <connections>
+                                        <action selector="loginSentByEnterKey:" target="-2" id="A3b-CT-T7S"/>
                                         <outlet property="nextKeyView" destination="RHv-pw-WCR" id="6yL-rP-1wB"/>
                                     </connections>
                                 </secureTextField>

@@ -38,6 +38,12 @@ class ToolbarVC: NSViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(ToolbarVC.closeModalNotifcation(_:)), name: NOTIF_CLOSE_MODAL, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(ToolbarVC.userDataDidChange(_:)), name: NOTIF_USER_DATA_DID_CHANGE, object: nil)
         
+        if AuthService.instance.isLoggedIn {
+            AuthService.instance.findUserByEmail(completion: { (success) in
+                NotificationCenter.default.post(name: NOTIF_USER_DATA_DID_CHANGE, object: nil)
+            })
+        }
+        
         view.wantsLayer = true
         view.layer?.backgroundColor = chatGreen.cgColor
         
