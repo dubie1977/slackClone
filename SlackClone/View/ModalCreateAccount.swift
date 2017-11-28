@@ -93,7 +93,7 @@ class ModalCreateAccount: NSView {
                     }
                 })
             } else {
-                debugPrint("Registered user Failed")
+                debugPrint("Registered user Failed: \(AuthService.instance.errorMsg)")
                 self.waitForLogin(loginIn: false)
             }
         }

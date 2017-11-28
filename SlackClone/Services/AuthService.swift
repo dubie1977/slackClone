@@ -41,6 +41,14 @@ class AuthService{
         }
     }
     
+    var errorMsg: String{
+        get {
+            return defaults.value(forKey: ERROR_MSG) as! String
+        } set {
+            defaults.set(newValue, forKey: ERROR_MSG)
+        }
+    }
+    
     
     func registerUser(email: String, password: String, completion: @escaping CompleationHandeler) {
         
@@ -54,7 +62,15 @@ class AuthService{
         Alamofire.request(URL_REGISTER, method: .post, parameters: body, encoding: JSONEncoding.default, headers: HEADER).responseString{
             (response) in
             if response.result.error == nil {
-                completion(true)
+                if response.response!.statusCode % 100 == 2{
+                    self.errorMsg = ""
+                    completion(true)
+                } else {
+                    guard let data = response.data else { return }
+                    self.setErrorMsg(data: data)
+                    self.isLoggedIn = false
+                    completion(false)
+                }
             } else {
                 completion(false)
                 debugPrint(response.result.error as Any)
@@ -74,22 +90,30 @@ class AuthService{
         Alamofire.request(URL_LOGIN, method: .post, parameters: body, encoding: JSONEncoding.default, headers: HEADER).responseJSON { (response) in
             
             if response.result.error == nil{
-                guard let data = response.data else { return }
-                do{
-                    let json = try JSON(data: data)
-                    self.userEmail =  json["user"].stringValue
-                    self.authToken =  json["token"].stringValue
-                    self.isLoggedIn = true
-                    completion(true)
-                } catch {
-                    debugPrint(error)
-                    return
+                if response.response!.statusCode % 100 == 2 {
+                    guard let data = response.data else { return }
+                    do{
+                        let json = try JSON(data: data)
+                        self.userEmail =  json["user"].stringValue
+                        self.authToken =  json["token"].stringValue
+                        self.isLoggedIn = true
+                        self.errorMsg = ""
+                        completion(true)
+                    } catch {
+                        debugPrint(error)
+                        return
+                    }
+                } else {
+                    guard let data = response.data else { return }
+                    self.setErrorMsg(data: data)
+                    self.isLoggedIn = false
+                    completion(false)
                 }
-                
                 
             } else {
                 completion(false)
                 debugPrint(response.result.error as Any)
+                
             }
         }
     }
@@ -110,9 +134,18 @@ class AuthService{
         Alamofire.request(URL_USER_ADD, method: .post, parameters: body, encoding: JSONEncoding.default, headers: BEARER_HEADER).responseJSON { (response) in
             
             if response.result.error == nil{
-                guard let data = response.data else {return }
-                self.setUserInfo(data: data)
-                completion(true)
+                if response.response!.statusCode % 100 == 2 {
+                    guard let data = response.data else {return }
+                    self.setUserInfo(data: data)
+                    self.errorMsg = ""
+                    completion(true)
+                }else {
+                    guard let data = response.data else { return }
+                    self.setErrorMsg(data: data)
+                    self.isLoggedIn = false
+                    completion(false)
+                }
+                
             } else {
                 completion(false)
                 debugPrint(response.result.error as Any)
@@ -124,13 +157,33 @@ class AuthService{
     func findUserByEmail(completion: @escaping CompleationHandeler){
         Alamofire.request("\(URL_USER_BY_EMAIL)\(userEmail)", method: .get, parameters: nil, encoding: JSONEncoding.default, headers: BEARER_HEADER).responseJSON { (response) in
             if response.result.error == nil {
-                guard let data = response.data else {return}
-                self.setUserInfo(data: data)
-                completion(true)
+                if response.response!.statusCode % 100 == 2 {
+                    guard let data = response.data else {return}
+                    self.setUserInfo(data: data)
+                    self.errorMsg = ""
+                    completion(true)
+                }else {
+                    guard let data = response.data else { return }
+                    self.setErrorMsg(data: data)
+                    self.isLoggedIn = false
+                    completion(false)
+                }
+                
             } else {
                 completion(false)
                 debugPrint(response.result.error as Any)
             }
+        }
+    }
+    
+    func setErrorMsg(data: Data){
+        do{
+            let json = try JSON(data: data)
+            self.errorMsg = json["message"].stringValue
+            self.isLoggedIn = false
+            debugPrint("ErrorMsg: \(self.errorMsg)")
+        } catch {
+            debugPrint(error)
         }
     }
     

@@ -31,6 +31,7 @@ let NOTIF_USER_DATA_DID_CHANGE = Notification.Name("userDataDidChange")
 let TOKEN_KEY = "token"
 let LOGGED_IN_KEY = "loggedIn"
 let USER_EMAIL = "userEmail"
+let ERROR_MSG = "errorMsg"
 
 // URL
 let BASE_URL = "https://slackclone1977-2.herokuapp.com/v1/"
