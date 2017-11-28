@@ -11,6 +11,7 @@
             <connections>
                 <outlet property="createAccountBtn" destination="TZq-yr-ctw" id="h2T-E4-Woq"/>
                 <outlet property="emailLoginBtn" destination="RHv-pw-WCR" id="yiY-Kv-o0c"/>
+                <outlet property="loginErrorMsg" destination="9bI-Gp-gvh" id="ByK-rJ-dLu"/>
                 <outlet property="loginStackView" destination="lfn-Ia-m1w" id="zV2-xS-Xfx"/>
                 <outlet property="passwordTxt" destination="W2N-hh-Iwn" id="xVr-aL-j4L"/>
                 <outlet property="progressSpinner" destination="Z3L-RH-2yT" id="BWT-IN-XGH"/>
@@ -134,6 +135,14 @@
                         <real value="3.4028234663852886e+38"/>
                     </customSpacing>
                 </stackView>
+                <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9bI-Gp-gvh">
+                    <rect key="frame" x="223" y="61" width="30" height="18"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="eNq-L3-Kwp">
+                        <font key="font" size="10" name="AvenirNext-Regular"/>
+                        <color key="textColor" red="1" green="0.061184048050000002" blue="0.21597288179999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="T8h-Er-E3A">
                     <rect key="frame" x="445" y="270" width="24" height="24"/>
                     <constraints>
@@ -159,7 +168,7 @@
                     </connections>
                 </button>
                 <progressIndicator hidden="YES" wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" bezeled="NO" indeterminate="YES" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="Z3L-RH-2yT">
-                    <rect key="frame" x="222" y="134" width="32" height="32"/>
+                    <rect key="frame" x="221" y="134" width="32" height="32"/>
                 </progressIndicator>
             </subviews>
             <constraints>
@@ -168,9 +177,11 @@
                 <constraint firstItem="T8h-Er-E3A" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="6" id="BwR-t7-6oR"/>
                 <constraint firstItem="lfn-Ia-m1w" firstAttribute="centerY" secondItem="c22-O7-iKe" secondAttribute="centerY" id="ImZ-tU-Uw4"/>
                 <constraint firstAttribute="trailing" secondItem="T8h-Er-E3A" secondAttribute="trailing" constant="6" id="IqQ-1j-swb"/>
+                <constraint firstItem="9bI-Gp-gvh" firstAttribute="centerX" secondItem="c22-O7-iKe" secondAttribute="centerX" id="Ppp-RU-CM3"/>
                 <constraint firstItem="Z3L-RH-2yT" firstAttribute="centerY" secondItem="c22-O7-iKe" secondAttribute="centerY" id="Rkk-9k-OYA"/>
                 <constraint firstItem="lfn-Ia-m1w" firstAttribute="centerX" secondItem="c22-O7-iKe" secondAttribute="centerX" id="TU8-uv-NVh"/>
                 <constraint firstItem="Z3L-RH-2yT" firstAttribute="centerX" secondItem="c22-O7-iKe" secondAttribute="centerX" id="WaD-bR-phK"/>
+                <constraint firstItem="9bI-Gp-gvh" firstAttribute="top" secondItem="lfn-Ia-m1w" secondAttribute="bottom" constant="5" id="ZoD-sf-UBQ"/>
             </constraints>
         </customView>
     </objects>

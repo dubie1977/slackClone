@@ -18,6 +18,7 @@ class ModalLogin: NSView {
     @IBOutlet weak var createAccountBtn: NSButton!
     @IBOutlet weak var loginStackView: NSStackView!
     @IBOutlet weak var progressSpinner: NSProgressIndicator!
+    @IBOutlet weak var loginErrorMsg: NSTextField!
     
     
     override init(frame frameRect: NSRect) {
@@ -48,7 +49,7 @@ class ModalLogin: NSView {
         createAccountBtn.styleButtonText(button: createAccountBtn, buttonName: "Create Account", fontColor: chatGreen, alignment: .center, font: AVENIR_REGULAR, size: 12.0)
         //createAccountBtn.layer?.backgroundColor = chatGreen.cgColor
         
-        
+        loginErrorMsg.isHidden = true
     }
     
     func waitForLogin(loginIn: Bool){
@@ -65,6 +66,11 @@ class ModalLogin: NSView {
         }
     }
     
+    func displayErrorMsg(msg: String){
+        loginErrorMsg.stringValue = AuthService.instance.errorMsg
+        loginErrorMsg.isHidden = false
+    }
+    
     func loginUser(){
         if !( userNameTxt.stringValue.isEmpty || passwordTxt.stringValue.isEmpty) {
             waitForLogin(loginIn: true)
@@ -76,12 +82,14 @@ class ModalLogin: NSView {
                             NotificationCenter.default.post(name: NOTIF_USER_DATA_DID_CHANGE, object: nil)
                         } else {
                             Swift.debugPrint("Find user failed")
+                            self.displayErrorMsg(msg: AuthService.instance.errorMsg)
                         }
                         self.waitForLogin(loginIn: false)
                     })
                 } else {
                     Swift.debugPrint("Login failed")
                     self.waitForLogin(loginIn: false)
+                    self.displayErrorMsg(msg: AuthService.instance.errorMsg)
                 }
             }
         } else {

@@ -20,6 +20,7 @@ class ModalCreateAccount: NSView {
     @IBOutlet weak var createAccountBtn: NSButton!
     @IBOutlet weak var progressSpinner: NSProgressIndicator!
     @IBOutlet weak var stackView: NSStackView!
+    @IBOutlet weak var errorMsgLbl: NSTextField!
     
     
     
@@ -57,6 +58,8 @@ class ModalCreateAccount: NSView {
         nameTxt.focusRingType = .none
         passwordTxt.focusRingType = .none
         emailTxt.focusRingType = .none
+        
+        errorMsgLbl.isHidden = true
     }
     
     func waitForLogin(loginIn: Bool){
@@ -71,6 +74,11 @@ class ModalCreateAccount: NSView {
             stackView.alphaValue = 1
             createAccountBtn.isEnabled = true
         }
+    }
+    
+    func displayErrorMsg(msg: String){
+        errorMsgLbl.stringValue = AuthService.instance.errorMsg
+        errorMsgLbl.isHidden = false
     }
     
     @IBAction func closeModalClicked(_ sender: Any) {
@@ -89,11 +97,12 @@ class ModalCreateAccount: NSView {
                         })
                     } else {
                         debugPrint("Login user Failed")
+                        self.displayErrorMsg(msg: AuthService.instance.errorMsg)
                         self.waitForLogin(loginIn: false)
                     }
                 })
             } else {
-                debugPrint("Registered user Failed: \(AuthService.instance.errorMsg)")
+                self.displayErrorMsg(msg: AuthService.instance.errorMsg)
                 self.waitForLogin(loginIn: false)
             }
         }

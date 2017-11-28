@@ -12,6 +12,7 @@
                 <outlet property="chooseImageBtn" destination="Aeh-rF-Pgs" id="Hc6-M9-MR3"/>
                 <outlet property="createAccountBtn" destination="8DU-JS-jRU" id="w19-6q-9sq"/>
                 <outlet property="emailTxt" destination="N2u-aQ-ZBR" id="I2x-5F-Uuu"/>
+                <outlet property="errorMsgLbl" destination="wut-sg-MVh" id="QCn-Q7-Onk"/>
                 <outlet property="nameTxt" destination="LoL-AW-OUv" id="hzY-XX-BkF"/>
                 <outlet property="passwordTxt" destination="Hl1-Hl-Hh7" id="sc6-U1-zn5"/>
                 <outlet property="profileImg" destination="a4U-qF-Xji" id="AXf-2t-GvQ"/>
@@ -265,14 +266,24 @@
                     </constraints>
                     <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                 </colorWell>
+                <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wut-sg-MVh">
+                    <rect key="frame" x="159" y="12" width="30" height="18"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="TRk-Cy-HFL">
+                        <font key="font" size="10" name="AvenirNext-Regular"/>
+                        <color key="textColor" red="1" green="0.061184048050000002" blue="0.21597288179999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
             </subviews>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="j2y-PI-4Tg" secondAttribute="trailing" constant="8" id="3PP-Ow-X9M"/>
                 <constraint firstItem="Aeh-rF-Pgs" firstAttribute="centerX" secondItem="6zd-xe-dKk" secondAttribute="centerX" id="Erq-BI-0sx"/>
                 <constraint firstItem="6zd-xe-dKk" firstAttribute="top" secondItem="vSG-7e-PVH" secondAttribute="bottom" constant="8" id="GxC-gP-a2T"/>
+                <constraint firstItem="wut-sg-MVh" firstAttribute="top" secondItem="vSG-7e-PVH" secondAttribute="bottom" constant="5" id="IiX-aY-Nrp"/>
                 <constraint firstItem="1Qk-G8-1fF" firstAttribute="centerY" secondItem="c22-O7-iKe" secondAttribute="centerY" id="M8M-da-lFc"/>
                 <constraint firstItem="vSG-7e-PVH" firstAttribute="centerX" secondItem="c22-O7-iKe" secondAttribute="centerX" id="hI5-kh-l4c"/>
                 <constraint firstItem="j2y-PI-4Tg" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="8" id="mju-kF-6dK"/>
+                <constraint firstItem="wut-sg-MVh" firstAttribute="centerX" secondItem="8DU-JS-jRU" secondAttribute="centerX" id="nnE-hr-101"/>
                 <constraint firstItem="vSG-7e-PVH" firstAttribute="centerY" secondItem="c22-O7-iKe" secondAttribute="centerY" id="tJI-8c-1Rr"/>
                 <constraint firstItem="1Qk-G8-1fF" firstAttribute="centerX" secondItem="c22-O7-iKe" secondAttribute="centerX" id="vJd-uE-DjQ"/>
             </constraints>
