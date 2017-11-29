@@ -13,25 +13,24 @@ class SocketService: NSObject {
     
     static let instance = SocketService()
     
-    //let socket: SocketIOClient = SocketIOClient(socketURL: URL(string:BASE_URL)!, nsp: "<#String#>")
-    
+    let socket: SocketIOClient = SocketIOClient(socketURL: URL(string:BASE_URL)!)
+    let user = UserDataService.instance
     
     override init(){
         super.init()
     }
     
     func establishConnection(){
-        //socket.connect()
+        socket.connect()
     }
     
     func closeConnection(){
-        //socket.disconnect()
+        socket.disconnect()
     }
     
     func addMessage(messageBody: String, userId: String, channelId: String, compleation: @escaping CompleationHandeler){
         
-        let user = UserDataService.instance
-        //socket.emit("newMessage", messageBody, userId, channelId, user.name, user.avatarName, user.avatarColor)
+        socket.emit("newMessage", messageBody, userId, channelId, user.name, user.avatarName, user.avatarColor)
         compleation(true)
     }
 }

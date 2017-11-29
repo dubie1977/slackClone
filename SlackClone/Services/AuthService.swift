@@ -62,7 +62,7 @@ class AuthService{
         Alamofire.request(URL_REGISTER, method: .post, parameters: body, encoding: JSONEncoding.default, headers: HEADER).responseString{
             (response) in
             if response.result.error == nil {
-                if response.response!.statusCode % 100 == 2{
+                if response.response!.statusCode / 100 == 2{
                     self.errorMsg = ""
                     completion(true)
                 } else {
@@ -90,7 +90,7 @@ class AuthService{
         Alamofire.request(URL_LOGIN, method: .post, parameters: body, encoding: JSONEncoding.default, headers: HEADER).responseJSON { (response) in
             
             if response.result.error == nil{
-                if response.response!.statusCode % 100 == 2 {
+                if response.response!.statusCode / 100 == 2 {
                     guard let data = response.data else { return }
                     do{
                         let json = try JSON(data: data)
@@ -134,7 +134,7 @@ class AuthService{
         Alamofire.request(URL_USER_ADD, method: .post, parameters: body, encoding: JSONEncoding.default, headers: BEARER_HEADER).responseJSON { (response) in
             
             if response.result.error == nil{
-                if response.response!.statusCode % 100 == 2 {
+                if response.response!.statusCode / 100 == 2 {
                     guard let data = response.data else {return }
                     self.setUserInfo(data: data)
                     self.errorMsg = ""
@@ -157,7 +157,7 @@ class AuthService{
     func findUserByEmail(completion: @escaping CompleationHandeler){
         Alamofire.request("\(URL_USER_BY_EMAIL)\(userEmail)", method: .get, parameters: nil, encoding: JSONEncoding.default, headers: BEARER_HEADER).responseJSON { (response) in
             if response.result.error == nil {
-                if response.response!.statusCode % 100 == 2 {
+                if response.response!.statusCode / 100 == 2 {
                     guard let data = response.data else {return}
                     self.setUserInfo(data: data)
                     self.errorMsg = ""

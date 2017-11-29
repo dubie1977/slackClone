@@ -18,11 +18,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     func applicationDidBecomeActive(_ notification: Notification) {
-        //SocketService.instance.establishConnection()
+        SocketService.instance.establishConnection()
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
-        //SocketService.instance.closeConnection()
+        SocketService.instance.closeConnection()
     }
 
 
