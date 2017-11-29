@@ -131,10 +131,10 @@
                     </customSpacing>
                 </stackView>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Yl7-3W-e2B">
-                    <rect key="frame" x="222" y="33" width="37" height="17"/>
+                    <rect key="frame" x="224" y="31" width="32" height="19"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="htc-vs-eX3">
-                        <font key="font" metaFont="system"/>
-                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <font key="font" size="11" name="AvenirNext-Regular"/>
+                        <color key="textColor" red="1" green="0.061184048050000002" blue="0.21597288179999999" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>

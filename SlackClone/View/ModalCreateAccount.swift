@@ -77,33 +77,54 @@ class ModalCreateAccount: NSView {
     }
     
     func displayErrorMsg(msg: String){
-        errorMsgLbl.stringValue = AuthService.instance.errorMsg
+        errorMsgLbl.stringValue = msg
         errorMsgLbl.isHidden = false
+    }
+    
+    func checkRequiredFields()->Bool{
+        var isRequirementMet = false
+        if ( emailTxt.stringValue.isEmpty || passwordTxt.stringValue.isEmpty) {
+            if emailTxt.stringValue.isEmpty && passwordTxt.stringValue.isEmpty{
+                displayErrorMsg(msg: "Please enter an email and password")
+            }else if emailTxt.stringValue.isEmpty{
+                displayErrorMsg(msg: "Please enter an email")
+            } else {
+                displayErrorMsg(msg: "Please enter a password")
+            }
+        } else {
+            isRequirementMet = true
+            errorMsgLbl.stringValue = ""
+            errorMsgLbl.isHidden = true
+        }
+        
+        return isRequirementMet
     }
     
     @IBAction func closeModalClicked(_ sender: Any) {
         NotificationCenter.default.post(name: NOTIF_CLOSE_MODAL, object: nil)
     }
     @IBAction func createAccountClicked(_ sender: Any) {
-        waitForLogin(loginIn: true)
-        AuthService.instance.registerUser(email: emailTxt.stringValue, password: passwordTxt.stringValue) { (success) in
-            if success {
-                AuthService.instance.loginUser(email: self.emailTxt.stringValue, password: self.passwordTxt.stringValue, completion: { (success) in
-                    if success {
-                        AuthService.instance.createUser(name: self.nameTxt.stringValue, email: self.emailTxt.stringValue, avatarName: "dark5", avatarColor: "", completion: { (success) in
+        if checkRequiredFields() {
+            waitForLogin(loginIn: true)
+            AuthService.instance.registerUser(email: emailTxt.stringValue, password: passwordTxt.stringValue) { (success) in
+                if success {
+                    AuthService.instance.loginUser(email: self.emailTxt.stringValue, password: self.passwordTxt.stringValue, completion: { (success) in
+                        if success {
+                            AuthService.instance.createUser(name: self.nameTxt.stringValue, email: self.emailTxt.stringValue, avatarName: "dark5", avatarColor: "", completion: { (success) in
+                                self.waitForLogin(loginIn: false)
+                                NotificationCenter.default.post(name: NOTIF_USER_DATA_DID_CHANGE, object: nil)
+                                NotificationCenter.default.post(name: NOTIF_CLOSE_MODAL, object: nil)
+                            })
+                        } else {
+                            debugPrint("Login user Failed")
+                            self.displayErrorMsg(msg: AuthService.instance.errorMsg)
                             self.waitForLogin(loginIn: false)
-                            NotificationCenter.default.post(name: NOTIF_USER_DATA_DID_CHANGE, object: nil)
-                            NotificationCenter.default.post(name: NOTIF_CLOSE_MODAL, object: nil)
-                        })
-                    } else {
-                        debugPrint("Login user Failed")
-                        self.displayErrorMsg(msg: AuthService.instance.errorMsg)
-                        self.waitForLogin(loginIn: false)
-                    }
-                })
-            } else {
-                self.displayErrorMsg(msg: AuthService.instance.errorMsg)
-                self.waitForLogin(loginIn: false)
+                        }
+                    })
+                } else {
+                    self.displayErrorMsg(msg: AuthService.instance.errorMsg)
+                    self.waitForLogin(loginIn: false)
+                }
             }
         }
     }

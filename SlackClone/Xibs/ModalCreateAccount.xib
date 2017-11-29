@@ -267,9 +267,9 @@
                     <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                 </colorWell>
                 <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wut-sg-MVh">
-                    <rect key="frame" x="159" y="12" width="30" height="18"/>
+                    <rect key="frame" x="158" y="11" width="32" height="19"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="TRk-Cy-HFL">
-                        <font key="font" size="10" name="AvenirNext-Regular"/>
+                        <font key="font" size="11" name="AvenirNext-Regular"/>
                         <color key="textColor" red="1" green="0.061184048050000002" blue="0.21597288179999999" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>

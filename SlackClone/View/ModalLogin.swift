@@ -67,12 +67,31 @@ class ModalLogin: NSView {
     }
     
     func displayErrorMsg(msg: String){
-        loginErrorMsg.stringValue = AuthService.instance.errorMsg
+        loginErrorMsg.stringValue = msg
         loginErrorMsg.isHidden = false
     }
     
+    func checkRequiredFields()->Bool{
+        var isRequirementMet = false
+        if ( userNameTxt.stringValue.isEmpty || passwordTxt.stringValue.isEmpty) {
+            if userNameTxt.stringValue.isEmpty && passwordTxt.stringValue.isEmpty{
+                displayErrorMsg(msg: "Please enter a user name and password")
+            }else if userNameTxt.stringValue.isEmpty{
+                displayErrorMsg(msg: "Please enter a user name")
+            } else {
+                displayErrorMsg(msg: "Please enter a password")
+            }
+        } else {
+            isRequirementMet = true
+            loginErrorMsg.stringValue = ""
+            loginErrorMsg.isHidden = true
+        }
+        
+        return isRequirementMet
+    }
+    
     func loginUser(){
-        if !( userNameTxt.stringValue.isEmpty || passwordTxt.stringValue.isEmpty) {
+        if ( checkRequiredFields()) {
             waitForLogin(loginIn: true)
             AuthService.instance.loginUser(email: userNameTxt.stringValue.lowercased(), password: passwordTxt.stringValue) { (success) in
                 if success {
@@ -92,15 +111,6 @@ class ModalLogin: NSView {
                     self.displayErrorMsg(msg: AuthService.instance.errorMsg)
                 }
             }
-        } else {
-            if userNameTxt.stringValue.isEmpty && passwordTxt.stringValue.isEmpty{
-                debugPrint("No user name or password")
-            }else if userNameTxt.stringValue.isEmpty{
-                debugPrint("No user name")
-            } else {
-                debugPrint("No password")
-            }
-            
         }
     }
     

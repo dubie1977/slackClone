@@ -63,14 +63,31 @@ class ModalCreateChannel: NSView {
     }
     
     func displayErrorMsg(msg: String){
-        errorMsgLbl.stringValue = AuthService.instance.errorMsg
+        errorMsgLbl.stringValue = msg
         errorMsgLbl.isHidden = false
     }
+    
+    func checkRequiredFields()->Bool{
+        var isRequirementMet = false
+        if  channelNameTxt.stringValue.isEmpty {
+            displayErrorMsg(msg: "Please enter a channel name")
+        } else {
+            isRequirementMet = true
+            errorMsgLbl.stringValue = ""
+            errorMsgLbl.isHidden = true
+        }
+        
+        return isRequirementMet
+    }
+    
     @IBAction func closeModelClicked(_ sender: Any) {
         NotificationCenter.default.post(name: NOTIF_CLOSE_MODAL, object: nil)
     }
     
     @IBAction func createChannelBtnClicked(_ sender: Any) {
+        if checkRequiredFields() {
+            
+        }
     }
     
     @IBAction func createChannelSentByEnterKey(_ sender: Any) {
