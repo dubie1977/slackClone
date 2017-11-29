@@ -19,6 +19,7 @@ class ChatVC: NSViewController {
     @IBOutlet weak var messageTxt: NSTextField!
     @IBOutlet weak var sendMessageBtn: NSButton!
     
+    let user = UserDataService.instance
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,8 +58,14 @@ class ChatVC: NSViewController {
     
     @IBAction func sendMessageButtonClicked(_ sender: Any) {
         print("send message clicked")
+        let channelId = "592cd40e39179c0023f3531f"
+        
         if AuthService.instance.isLoggedIn {
-            //send msg
+            SocketService.instance.addMessage(messageBody: messageTxt.stringValue, userId: user.id, channelId: channelId, compleation: { (success) in
+                if success {
+                    self.messageTxt.stringValue = ""
+                }
+            })
         } else {
             let modalDict = [USER_INFO_MODAL: ModalType.login]
             NotificationCenter.default.post(name: NOTIF_PRESENT_MODAL, object: nil, userInfo: modalDict)
