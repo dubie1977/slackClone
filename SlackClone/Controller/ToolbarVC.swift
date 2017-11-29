@@ -12,6 +12,7 @@ enum ModalType {
     case login
     case createAccount
     case profile
+    case createChannel
 }
 
 class ToolbarVC: NSViewController {
@@ -98,6 +99,10 @@ class ToolbarVC: NSViewController {
             modalHeight = 300
         case ModalType.profile:
             modalView = ModalProfile()
+            modalWidth = 475
+            modalHeight = 300
+        case ModalType.createChannel:
+            modalView = ModalCreateChannel()
             modalWidth = 475
             modalHeight = 300
         }

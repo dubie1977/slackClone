@@ -13,6 +13,8 @@
 		8CCA6DE61FB4FA29009C2F08 /* ModalLogin.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CCA6DE51FB4FA29009C2F08 /* ModalLogin.xib */; };
 		8CCA6DE81FB4FAA9009C2F08 /* ModalLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCA6DE71FB4FAA9009C2F08 /* ModalLogin.swift */; };
 		C1131CA21FCE1195002E8E84 /* SocketService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1131CA11FCE1195002E8E84 /* SocketService.swift */; };
+		C1131CA41FCF287C002E8E84 /* ModalCreateChannel.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1131CA31FCF287C002E8E84 /* ModalCreateChannel.xib */; };
+		C1131CA61FCF28C0002E8E84 /* ModalCreateChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1131CA51FCF28C0002E8E84 /* ModalCreateChannel.swift */; };
 		C15A73231FBA5BB800830756 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15A73221FBA5BB800830756 /* AuthService.swift */; };
 		C15A73251FBE5E2A00830756 /* UserDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15A73241FBE5E2A00830756 /* UserDataService.swift */; };
 		C17CB0E61FB3C9BB00C14A6B /* NSButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17CB0E51FB3C9BB00C14A6B /* NSButton.swift */; };
@@ -38,6 +40,8 @@
 		8CCA6DE51FB4FA29009C2F08 /* ModalLogin.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ModalLogin.xib; sourceTree = "<group>"; };
 		8CCA6DE71FB4FAA9009C2F08 /* ModalLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalLogin.swift; sourceTree = "<group>"; };
 		C1131CA11FCE1195002E8E84 /* SocketService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketService.swift; sourceTree = "<group>"; };
+		C1131CA31FCF287C002E8E84 /* ModalCreateChannel.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ModalCreateChannel.xib; sourceTree = "<group>"; };
+		C1131CA51FCF28C0002E8E84 /* ModalCreateChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalCreateChannel.swift; sourceTree = "<group>"; };
 		C15A73221FBA5BB800830756 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		C15A73241FBE5E2A00830756 /* UserDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataService.swift; sourceTree = "<group>"; };
 		C17CB0E51FB3C9BB00C14A6B /* NSButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSButton.swift; sourceTree = "<group>"; };
@@ -93,6 +97,7 @@
 				8CCA6DE71FB4FAA9009C2F08 /* ModalLogin.swift */,
 				8CC7959A1FB54E0700AFB2DD /* ModalCreateAccount.swift */,
 				C1F0A5CE1FC62400008E3F0C /* ModalProfile.swift */,
+				C1131CA51FCF28C0002E8E84 /* ModalCreateChannel.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -110,6 +115,7 @@
 				8CCA6DE51FB4FA29009C2F08 /* ModalLogin.xib */,
 				8CC795981FB54DF000AFB2DD /* ModalCreateAccount.xib */,
 				C1F0A5CC1FC6236B008E3F0C /* ModalProfile.xib */,
+				C1131CA31FCF287C002E8E84 /* ModalCreateChannel.xib */,
 			);
 			path = Xibs;
 			sourceTree = "<group>";
@@ -247,6 +253,7 @@
 				8CCA6DE61FB4FA29009C2F08 /* ModalLogin.xib in Resources */,
 				C1F0A5CD1FC6236B008E3F0C /* ModalProfile.xib in Resources */,
 				C1CB80201FB23C30002DAD97 /* Main.storyboard in Resources */,
+				C1131CA41FCF287C002E8E84 /* ModalCreateChannel.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -325,6 +332,7 @@
 				C1CB802E1FB26D73002DAD97 /* ChannelVC.swift in Sources */,
 				C15A73231FBA5BB800830756 /* AuthService.swift in Sources */,
 				C15A73251FBE5E2A00830756 /* UserDataService.swift in Sources */,
+				C1131CA61FCF28C0002E8E84 /* ModalCreateChannel.swift in Sources */,
 				8CCA6DE41FB4CB93009C2F08 /* ClickBlockingView.swift in Sources */,
 				C1CB80191FB23C30002DAD97 /* AppDelegate.swift in Sources */,
 				C1F0A5CF1FC62400008E3F0C /* ModalProfile.swift in Sources */,

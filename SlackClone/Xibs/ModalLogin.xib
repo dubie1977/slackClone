@@ -32,7 +32,7 @@
                             <rect key="frame" x="66" y="101" width="68" height="32"/>
                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Sign In" id="cV3-um-5RN">
                                 <font key="font" size="19" name="AvenirNext-Bold"/>
-                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
                         </textField>

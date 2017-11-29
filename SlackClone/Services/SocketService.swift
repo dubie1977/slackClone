@@ -33,4 +33,9 @@ class SocketService: NSObject {
         socket.emit("newMessage", messageBody, userId, channelId, user.name, user.avatarName, user.avatarColor)
         compleation(true)
     }
+    
+    func addChannel(channelName: String, channelDescription: String, compleation: @escaping CompleationHandeler){
+        socket.emit("newChannel", channelName, channelDescription)
+        compleation(true)
+    }
 }
