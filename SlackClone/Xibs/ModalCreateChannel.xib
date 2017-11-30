@@ -39,11 +39,11 @@
                             <rect key="frame" x="0.0" y="86" width="200" height="24"/>
                             <subviews>
                                 <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1lO-6H-tm9">
-                                    <rect key="frame" x="0.0" y="1" width="200" height="23"/>
+                                    <rect key="frame" x="-2" y="1" width="204" height="23"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="200" id="u3k-QK-CXM"/>
                                     </constraints>
-                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" focusRingType="none" placeholderString="Channel Name" drawsBackground="YES" id="2Or-hs-I8P">
+                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" focusRingType="none" placeholderString="Channel Name" id="2Or-hs-I8P">
                                         <font key="font" size="13" name="AvenirNext-Regular"/>
                                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -73,11 +73,11 @@
                             <rect key="frame" x="0.0" y="47" width="200" height="24"/>
                             <subviews>
                                 <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="OYz-go-oTm">
-                                    <rect key="frame" x="0.0" y="1" width="200" height="23"/>
+                                    <rect key="frame" x="-2" y="1" width="204" height="23"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="200" id="2WS-0V-DLL"/>
                                     </constraints>
-                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" focusRingType="none" placeholderString="Channel Discriptor" drawsBackground="YES" id="IuJ-q8-9lK">
+                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" focusRingType="none" placeholderString="Channel Discriptor" id="IuJ-q8-9lK">
                                         <font key="font" size="13" name="AvenirNext-Regular"/>
                                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>

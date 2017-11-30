@@ -86,7 +86,13 @@ class ModalCreateChannel: NSView {
     
     @IBAction func createChannelBtnClicked(_ sender: Any) {
         if checkRequiredFields() {
-            
+            SocketService.instance.addChannel(channelName: channelNameTxt.stringValue, channelDescription: channelDiscription.stringValue, compleation: { (success) in
+                if success {
+                    NotificationCenter.default.post(name: NOTIF_CLOSE_MODAL, object: nil)
+                } else {
+                    self.displayErrorMsg(msg: "There was an error creating the channel")
+                }
+            })
         }
     }
     
