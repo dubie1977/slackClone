@@ -36,6 +36,12 @@ class UserDataService {
         }
     }
     
+    var avatarColorCG: CGColor {
+        get{
+            return returnCGColor(components: _avatarColor)
+        }
+    }
+    
     var avatarName: String {
         get{
             return _avatarName
@@ -61,6 +67,36 @@ class UserDataService {
         set {
             _name = newValue
         }
+    }
+    
+    func returnCGColor(components: String) -> CGColor {
+        //[0.465327603549635, 1.0, 0.331889263765667, 1.0]
+        
+        let scanner = Scanner(string: components)
+        let skipped = CharacterSet(charactersIn: "[], ")
+        let comma = CharacterSet(charactersIn: ",")
+        scanner.charactersToBeSkipped = skipped
+        
+        var r, g, b, a : NSString?
+        
+        scanner.scanUpToCharacters(from: comma, into: &r)
+        scanner.scanUpToCharacters(from: comma, into: &g)
+        scanner.scanUpToCharacters(from: comma, into: &b)
+        scanner.scanUpToCharacters(from: comma, into: &a)
+        
+        let defaultColor = CGColor(red: 0.69, green: 0.85, blue: 0.99, alpha: 1.0)
+        guard let rUnwrapped = r else { return defaultColor}
+        guard let gUnwrapped = g else { return defaultColor}
+        guard let bUnwrapped = b else { return defaultColor}
+        guard let aUnwrapped = a else { return defaultColor}
+        
+        let rfloat = CGFloat(rUnwrapped.doubleValue)
+        let gfloat = CGFloat(gUnwrapped.doubleValue)
+        let bfloat = CGFloat(bUnwrapped.doubleValue)
+        let afloat = CGFloat(aUnwrapped.doubleValue)
+        
+        let newCGColor = CGColor(red: rfloat, green: gfloat, blue: bfloat, alpha: afloat)
+        return newCGColor
     }
     
     func logOutUser(){

@@ -10,6 +10,7 @@
         <customObject id="-2" userLabel="File's Owner" customClass="ModalCreateAccount" customModule="SlackClone" customModuleProvider="target">
             <connections>
                 <outlet property="chooseImageBtn" destination="Aeh-rF-Pgs" id="Hc6-M9-MR3"/>
+                <outlet property="colorPicker" destination="6zd-xe-dKk" id="6FV-4X-xsR"/>
                 <outlet property="createAccountBtn" destination="8DU-JS-jRU" id="w19-6q-9sq"/>
                 <outlet property="emailTxt" destination="N2u-aQ-ZBR" id="I2x-5F-Uuu"/>
                 <outlet property="errorMsgLbl" destination="wut-sg-MVh" id="QCn-Q7-Onk"/>
@@ -265,6 +266,9 @@
                         <constraint firstAttribute="height" constant="23" id="W6y-HW-NV3"/>
                     </constraints>
                     <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <connections>
+                        <action selector="chooseColor:" target="-2" id="agJ-xT-KeG"/>
+                    </connections>
                 </colorWell>
                 <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wut-sg-MVh">
                     <rect key="frame" x="158" y="11" width="32" height="19"/>

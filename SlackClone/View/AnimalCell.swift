@@ -30,8 +30,10 @@ class AnimalCell: NSCollectionViewItem {
     func configureCell(index: Int, type: AnimalType){
         if type == AnimalType.dark {
             animalImg.image = NSImage(named: NSImage.Name(rawValue: "dark\(index)"))
+            view.layer?.backgroundColor = NSColor.lightGray.cgColor
         } else {
             animalImg.image = NSImage(named: NSImage.Name(rawValue: "light\(index)"))
+            view.layer?.backgroundColor = NSColor.gray.cgColor
         }
     }
     

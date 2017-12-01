@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class ModalCreateAccount: NSView {
+class ModalCreateAccount: NSView, NSPopoverDelegate {
 
     // Outlets
     @IBOutlet weak var view : NSView!
@@ -21,6 +21,7 @@ class ModalCreateAccount: NSView {
     @IBOutlet weak var progressSpinner: NSProgressIndicator!
     @IBOutlet weak var stackView: NSStackView!
     @IBOutlet weak var errorMsgLbl: NSTextField!
+    @IBOutlet weak var colorPicker: NSColorWell!
     
     // Variables
     var avatarName = "profileDefault"
@@ -29,6 +30,9 @@ class ModalCreateAccount: NSView {
     
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
+        
+        popover.delegate = self
+        
         Bundle.main.loadNibNamed(NSNib.Name(rawValue: "ModalCreateAccount"), owner: self, topLevelObjects: nil)
         self.addSubview(self.view)
     }
@@ -50,6 +54,7 @@ class ModalCreateAccount: NSView {
         profileImg.layer?.cornerRadius = 10
         profileImg.layer?.borderColor = NSColor.gray.cgColor
         profileImg.layer?.borderWidth = 3
+        //profileImg.layer?.backgroundColor = CGColor(name: "")
         
         createAccountBtn.styleButtonText(button: createAccountBtn, buttonName: "Create Account", fontColor: .white, alignment: .center, font: AVENIR_REGULAR, size: 13.0)
         createAccountBtn.layer?.backgroundColor = chatGreen.cgColor
@@ -63,6 +68,13 @@ class ModalCreateAccount: NSView {
         emailTxt.focusRingType = .none
         
         errorMsgLbl.isHidden = true
+    }
+    
+    func popoverDidClose(_ notification: Notification) {
+        if UserDataService.instance.avatarName != ""{
+            profileImg.image = NSImage(named: NSImage.Name(rawValue: UserDataService.instance.avatarName))
+            avatarName = UserDataService.instance.avatarName
+        }
     }
     
     func waitForLogin(loginIn: Bool){
@@ -113,7 +125,7 @@ class ModalCreateAccount: NSView {
                 if success {
                     AuthService.instance.loginUser(email: self.emailTxt.stringValue, password: self.passwordTxt.stringValue, completion: { (success) in
                         if success {
-                            AuthService.instance.createUser(name: self.nameTxt.stringValue, email: self.emailTxt.stringValue, avatarName: "dark5", avatarColor: "", completion: { (success) in
+                            AuthService.instance.createUser(name: self.nameTxt.stringValue, email: self.emailTxt.stringValue, avatarName: self.avatarName, avatarColor: self.avatarColor, completion: { (success) in
                                 self.waitForLogin(loginIn: false)
                                 NotificationCenter.default.post(name: NOTIF_USER_DATA_DID_CHANGE, object: nil)
                                 NotificationCenter.default.post(name: NOTIF_CLOSE_MODAL, object: nil)
@@ -136,6 +148,14 @@ class ModalCreateAccount: NSView {
         popover.contentViewController = AvatarPickerVC(nibName: NSNib.Name(rawValue: "AvatarPickerVC"), bundle: nil)
         popover.show(relativeTo: chooseImageBtn.bounds, of: chooseImageBtn, preferredEdge: .minX)
         popover.behavior = .transient
+    }
+    
+    @IBAction func chooseColor(_ sender: Any) {
+        profileImg.layer?.backgroundColor = colorPicker.color.cgColor
+        let color = colorPicker.color.cgColor
+        guard let colorArray = color.components?.description else { return }
+        avatarColor = colorArray
+        debugPrint(colorArray)
     }
     
     
