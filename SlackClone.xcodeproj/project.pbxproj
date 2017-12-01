@@ -15,6 +15,10 @@
 		C1131CA21FCE1195002E8E84 /* SocketService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1131CA11FCE1195002E8E84 /* SocketService.swift */; };
 		C1131CA41FCF287C002E8E84 /* ModalCreateChannel.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1131CA31FCF287C002E8E84 /* ModalCreateChannel.xib */; };
 		C1131CA61FCF28C0002E8E84 /* ModalCreateChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1131CA51FCF28C0002E8E84 /* ModalCreateChannel.swift */; };
+		C1131CAA1FD089B3002E8E84 /* AvatarPickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1131CA81FD089B3002E8E84 /* AvatarPickerVC.swift */; };
+		C1131CAB1FD089B3002E8E84 /* AvatarPickerVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1131CA91FD089B3002E8E84 /* AvatarPickerVC.xib */; };
+		C1131CAE1FD0D711002E8E84 /* AnimalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1131CAC1FD0D711002E8E84 /* AnimalCell.swift */; };
+		C1131CAF1FD0D711002E8E84 /* AnimalCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1131CAD1FD0D711002E8E84 /* AnimalCell.xib */; };
 		C15A73231FBA5BB800830756 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15A73221FBA5BB800830756 /* AuthService.swift */; };
 		C15A73251FBE5E2A00830756 /* UserDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15A73241FBE5E2A00830756 /* UserDataService.swift */; };
 		C17CB0E61FB3C9BB00C14A6B /* NSButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17CB0E51FB3C9BB00C14A6B /* NSButton.swift */; };
@@ -42,6 +46,10 @@
 		C1131CA11FCE1195002E8E84 /* SocketService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketService.swift; sourceTree = "<group>"; };
 		C1131CA31FCF287C002E8E84 /* ModalCreateChannel.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ModalCreateChannel.xib; sourceTree = "<group>"; };
 		C1131CA51FCF28C0002E8E84 /* ModalCreateChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalCreateChannel.swift; sourceTree = "<group>"; };
+		C1131CA81FD089B3002E8E84 /* AvatarPickerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarPickerVC.swift; sourceTree = "<group>"; };
+		C1131CA91FD089B3002E8E84 /* AvatarPickerVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AvatarPickerVC.xib; sourceTree = "<group>"; };
+		C1131CAC1FD0D711002E8E84 /* AnimalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalCell.swift; sourceTree = "<group>"; };
+		C1131CAD1FD0D711002E8E84 /* AnimalCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AnimalCell.xib; sourceTree = "<group>"; };
 		C15A73221FBA5BB800830756 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		C15A73241FBE5E2A00830756 /* UserDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataService.swift; sourceTree = "<group>"; };
 		C17CB0E51FB3C9BB00C14A6B /* NSButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSButton.swift; sourceTree = "<group>"; };
@@ -93,6 +101,8 @@
 		8CCA6DE11FB4CB56009C2F08 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C1131CA71FD08986002E8E84 /* popover */,
+				C1131CAC1FD0D711002E8E84 /* AnimalCell.swift */,
 				8CCA6DE31FB4CB93009C2F08 /* ClickBlockingView.swift */,
 				8CCA6DE71FB4FAA9009C2F08 /* ModalLogin.swift */,
 				8CC7959A1FB54E0700AFB2DD /* ModalCreateAccount.swift */,
@@ -116,8 +126,18 @@
 				8CC795981FB54DF000AFB2DD /* ModalCreateAccount.xib */,
 				C1F0A5CC1FC6236B008E3F0C /* ModalProfile.xib */,
 				C1131CA31FCF287C002E8E84 /* ModalCreateChannel.xib */,
+				C1131CAD1FD0D711002E8E84 /* AnimalCell.xib */,
 			);
 			path = Xibs;
+			sourceTree = "<group>";
+		};
+		C1131CA71FD08986002E8E84 /* popover */ = {
+			isa = PBXGroup;
+			children = (
+				C1131CA81FD089B3002E8E84 /* AvatarPickerVC.swift */,
+				C1131CA91FD089B3002E8E84 /* AvatarPickerVC.xib */,
+			);
+			path = popover;
 			sourceTree = "<group>";
 		};
 		C15A73211FBA5B9E00830756 /* Services */ = {
@@ -249,7 +269,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				C1CB801D1FB23C30002DAD97 /* Assets.xcassets in Resources */,
+				C1131CAF1FD0D711002E8E84 /* AnimalCell.xib in Resources */,
 				8CC795991FB54DF000AFB2DD /* ModalCreateAccount.xib in Resources */,
+				C1131CAB1FD089B3002E8E84 /* AvatarPickerVC.xib in Resources */,
 				8CCA6DE61FB4FA29009C2F08 /* ModalLogin.xib in Resources */,
 				C1F0A5CD1FC6236B008E3F0C /* ModalProfile.xib in Resources */,
 				C1CB80201FB23C30002DAD97 /* Main.storyboard in Resources */,
@@ -329,6 +351,7 @@
 				8CCA6DE81FB4FAA9009C2F08 /* ModalLogin.swift in Sources */,
 				C1CB80351FB272A3002DAD97 /* Constants.swift in Sources */,
 				C1CB802C1FB26BFF002DAD97 /* ToolbarVC.swift in Sources */,
+				C1131CAA1FD089B3002E8E84 /* AvatarPickerVC.swift in Sources */,
 				C1CB802E1FB26D73002DAD97 /* ChannelVC.swift in Sources */,
 				C15A73231FBA5BB800830756 /* AuthService.swift in Sources */,
 				C15A73251FBE5E2A00830756 /* UserDataService.swift in Sources */,
@@ -339,6 +362,7 @@
 				C1CB80321FB27004002DAD97 /* MainWindowController.swift in Sources */,
 				C17CB0E61FB3C9BB00C14A6B /* NSButton.swift in Sources */,
 				8CC7959B1FB54E0700AFB2DD /* ModalCreateAccount.swift in Sources */,
+				C1131CAE1FD0D711002E8E84 /* AnimalCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

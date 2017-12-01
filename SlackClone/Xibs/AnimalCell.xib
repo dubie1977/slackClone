@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="13196" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13196"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="AnimalCell" customModule="SlackClone" customModuleProvider="target">
+            <connections>
+                <outlet property="animalImg" destination="eNg-D4-HgT" id="Ivz-TV-MHV"/>
+                <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="Hz6-mo-xeY">
+            <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eNg-D4-HgT">
+                    <rect key="frame" x="8" y="8" width="84" height="84"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="84" id="Bl5-hP-9L1"/>
+                        <constraint firstAttribute="width" constant="84" id="UYT-9K-UYd"/>
+                    </constraints>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="dark0" id="wVf-MV-wRM"/>
+                </imageView>
+            </subviews>
+            <constraints>
+                <constraint firstItem="eNg-D4-HgT" firstAttribute="centerX" secondItem="Hz6-mo-xeY" secondAttribute="centerX" id="5eY-0G-7vc"/>
+                <constraint firstItem="eNg-D4-HgT" firstAttribute="centerY" secondItem="Hz6-mo-xeY" secondAttribute="centerY" id="Jdx-GY-Pq9"/>
+            </constraints>
+        </customView>
+        <collectionViewItem id="PUt-DE-vpc" customClass="AnimalCell" customModule="SlackClone" customModuleProvider="target"/>
+    </objects>
+    <resources>
+        <image name="dark0" width="100" height="100"/>
+    </resources>
+</document>
