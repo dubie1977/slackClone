@@ -51,11 +51,15 @@ class ChannelVC: NSViewController {
     }
     
     func getChannels(){
-        MessageService.instance.findAllChannels { (success) in
-            for channel in MessageService.instance.channels{
+        MessageService.instance.findAllChannels { (success, msg) in
+            if success {
                 self.tableView.reloadData()
-                debugPrint(channel.channelTitle)
+                //for channel in MessageService.instance.channels{
+                //}
+            } else {
+                debugPrint(msg)
             }
+            
         }
         
     }

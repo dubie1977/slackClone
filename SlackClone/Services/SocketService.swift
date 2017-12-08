@@ -15,6 +15,7 @@ class SocketService: NSObject {
     
     let socket: SocketIOClient = SocketIOClient(socketURL: URL(string:BASE_URL)!)
     let user = UserDataService.instance
+    let message = MessageService.instance
     
     override init(){
         super.init()
@@ -34,8 +35,23 @@ class SocketService: NSObject {
         compleation(true)
     }
     
-    func addChannel(channelName: String, channelDescription: String, compleation: @escaping CompleationHandeler){
-        socket.emit("newChannel", channelName, channelDescription)
-        compleation(true)
+    func addChannel(channelName: String, channelDescription: String, compleation: @escaping CompleationHandelerWithMsg){
+        
+        if doseChannelExist(channelName: channelName){
+            socket.emit("newChannel", channelName, channelDescription)
+            compleation(true, "")
+        } else {
+            compleation(false, "Channel alread exists")
+        }
+    }
+    
+    func doseChannelExist(channelName: String)-> Bool{
+
+        for channel in message.channels{
+            if channelName.lowercased() == channel.channelTitle.lowercased(){
+                return true
+            }
+        }
+        return false
     }
 }

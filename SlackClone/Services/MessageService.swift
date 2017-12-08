@@ -15,7 +15,7 @@ class MessageService{
     
     var channels = [Channel]()
     
-    func findAllChannels(compleation: @escaping CompleationHandeler){
+    func findAllChannels(compleation: @escaping CompleationHandelerWithMsg){
         Alamofire.request(URL_GET_CHANNELS, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: BEARER_HEADER).responseJSON { (response) in
             if response.result.error == nil{
                 if response.response!.statusCode / 100 == 2 {
@@ -29,31 +29,30 @@ class MessageService{
                                 let channel = Channel(channelTitle: name, channelDescription: channelDescription, id: id)
                                 self.channels.append(channel)
                             }
-                            compleation(true)
+                            compleation(true, "")
                         }
                     } catch{
                         debugPrint(error)
-                        compleation(false)
+                        compleation(false, error.localizedDescription)
                         return
                     }
                 }else {
                     guard let data = response.data else { return }
-                    self.setErrorMsg(data: data)
-                    compleation(false)
+                    var error = self.setErrorMsg(data: data)
+                    compleation(false, error)
                     debugPrint(response.result.error as Any)
                 }
             }
         }
     }
     
-    func setErrorMsg(data: Data){
+    func setErrorMsg(data: Data) -> String{
         do{
             let json = try JSON(data: data)
             var errorMsg = json["message"].stringValue
-            //TODO: Need to do something with the error msg
-            debugPrint("ErrorMsg: \(errorMsg)")
+            return errorMsg
         } catch {
-            debugPrint(error)
+            return error.localizedDescription
         }
     }
 }

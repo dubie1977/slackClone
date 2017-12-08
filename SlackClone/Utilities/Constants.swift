@@ -47,3 +47,4 @@ let BEARER_HEADER = ["Authorization":"Bearer \(AuthService.instance.authToken)",
 
 
 typealias CompleationHandeler = (_ Success: Bool) -> ()
+typealias CompleationHandelerWithMsg = (_ Success: Bool, _ msg: String) -> ()
