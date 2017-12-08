@@ -34,6 +34,13 @@ class ChannelVC: NSViewController {
         
         userNameLbl.stringValue = ""
         addChannelBtn.styleButtonText(button: addChannelBtn, buttonName: "Add +", fontColor: .controlColor, alignment: .center, font: AVENIR_REGULAR, size: 13.0)
+        
+        MessageService.instance.findAllChannels { (success) in
+            for channel in MessageService.instance.channels{
+                debugPrint(channel.channelTitle)
+            }
+            
+        }
     }
     
     @IBAction func addChannelButtonClicked(_ sender: Any) {
