@@ -18,7 +18,8 @@ class ChannelVC: NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        tableView.delegate = self
+        tableView.dataSource = self
     }
     
     override func viewWillAppear() {
@@ -35,12 +36,7 @@ class ChannelVC: NSViewController {
         userNameLbl.stringValue = ""
         addChannelBtn.styleButtonText(button: addChannelBtn, buttonName: "Add +", fontColor: .controlColor, alignment: .center, font: AVENIR_REGULAR, size: 13.0)
         
-        MessageService.instance.findAllChannels { (success) in
-            for channel in MessageService.instance.channels{
-                debugPrint(channel.channelTitle)
-            }
-            
-        }
+        
     }
     
     @IBAction func addChannelButtonClicked(_ sender: Any) {
@@ -54,13 +50,50 @@ class ChannelVC: NSViewController {
         }
     }
     
+    func getChannels(){
+        MessageService.instance.findAllChannels { (success) in
+            for channel in MessageService.instance.channels{
+                self.tableView.reloadData()
+                debugPrint(channel.channelTitle)
+            }
+        }
+        
+    }
+    
     @objc func userDataDidChange(_ notif: Notification){
         if AuthService.instance.isLoggedIn {
             userNameLbl.stringValue = UserDataService.instance.name
+            getChannels()
         } else {
             userNameLbl.stringValue = ""
         }
     }
+}
+
+extension ChannelVC: NSTableViewDelegate, NSTableViewDataSource {
+    
+    func numberOfRows(in tableView: NSTableView) -> Int {
+        return MessageService.instance.channels.count
+    }
+    
+    func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
+        let channel = MessageService.instance.channels[row]
+        
+        if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "channelCell"), owner: nil) as? ChannelCell{
+            
+            cell.configureCell(channel: channel)
+            return cell
+        }
+        return NSTableCellView()
+    }
+    
+    func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
+        return 30.0
+    }
     
     
 }
+
+
+
+

@@ -822,13 +822,13 @@
                                     <action selector="addChannelButtonClicked:" target="bHe-Oe-Txv" id="F03-7w-C4J"/>
                                 </connections>
                             </button>
-                            <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UnR-WW-jHZ">
+                            <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="32" horizontalPageScroll="10" verticalLineScroll="32" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UnR-WW-jHZ">
                                 <rect key="frame" x="0.0" y="0.0" width="200" height="223"/>
                                 <clipView key="contentView" id="1L4-T4-xiK">
                                     <rect key="frame" x="0.0" y="0.0" width="200" height="223"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" id="QJx-9p-sk1">
+                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="30" rowSizeStyle="automatic" viewBased="YES" id="QJx-9p-sk1">
                                             <rect key="frame" x="0.0" y="0.0" width="200" height="223"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
@@ -848,21 +848,24 @@
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
-                                                        <tableCellView id="0fb-n4-KUI">
-                                                            <rect key="frame" x="1" y="1" width="197" height="17"/>
+                                                        <tableCellView identifier="channelCell" id="0fb-n4-KUI" customClass="ChannelCell" customModule="SlackClone" customModuleProvider="target">
+                                                            <rect key="frame" x="1" y="1" width="197" height="30"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PEu-Wf-6aX">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="197" height="17"/>
-                                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="1ZM-Sa-upv">
-                                                                        <font key="font" metaFont="system"/>
-                                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="PEu-Wf-6aX">
+                                                                    <rect key="frame" x="10" y="4" width="59" height="23"/>
+                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="#General" id="1ZM-Sa-upv">
+                                                                        <font key="font" size="13" name="AvenirNext-Regular"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
                                                                 </textField>
                                                             </subviews>
+                                                            <constraints>
+                                                                <constraint firstItem="PEu-Wf-6aX" firstAttribute="centerY" secondItem="0fb-n4-KUI" secondAttribute="centerY" id="4hs-23-4Q4"/>
+                                                                <constraint firstItem="PEu-Wf-6aX" firstAttribute="leading" secondItem="0fb-n4-KUI" secondAttribute="leading" constant="12" id="mcC-0H-qcW"/>
+                                                            </constraints>
                                                             <connections>
+                                                                <outlet property="channelName" destination="PEu-Wf-6aX" id="IIJ-bO-AU1"/>
                                                                 <outlet property="textField" destination="PEu-Wf-6aX" id="LaS-1k-ps7"/>
                                                             </connections>
                                                         </tableCellView>
