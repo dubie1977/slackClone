@@ -40,7 +40,7 @@ class ToolbarVC: NSViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(ToolbarVC.userDataDidChange(_:)), name: NOTIF_USER_DATA_DID_CHANGE, object: nil)
         
         if AuthService.instance.isLoggedIn {
-            AuthService.instance.findUserByEmail(completion: { (success) in
+            AuthService.instance.findUserByEmail(completion: { (success, msg) in
                 NotificationCenter.default.post(name: NOTIF_USER_DATA_DID_CHANGE, object: nil)
             })
         }

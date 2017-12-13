@@ -37,7 +37,7 @@ class SocketService: NSObject {
     
     func addChannel(channelName: String, channelDescription: String, compleation: @escaping CompleationHandelerWithMsg){
         
-        if doseChannelExist(channelName: channelName){
+        if !doseChannelExist(channelName: channelName){
             socket.emit("newChannel", channelName, channelDescription)
             compleation(true, "")
         } else {

@@ -121,23 +121,23 @@ class ModalCreateAccount: NSView, NSPopoverDelegate {
     @IBAction func createAccountClicked(_ sender: Any) {
         if checkRequiredFields() {
             waitForLogin(loginIn: true)
-            AuthService.instance.registerUser(email: emailTxt.stringValue, password: passwordTxt.stringValue) { (success) in
+            AuthService.instance.registerUser(email: emailTxt.stringValue, password: passwordTxt.stringValue) { (success, msg) in
                 if success {
-                    AuthService.instance.loginUser(email: self.emailTxt.stringValue, password: self.passwordTxt.stringValue, completion: { (success) in
+                    AuthService.instance.loginUser(email: self.emailTxt.stringValue, password: self.passwordTxt.stringValue, completion: { (success, msg) in
                         if success {
-                            AuthService.instance.createUser(name: self.nameTxt.stringValue, email: self.emailTxt.stringValue, avatarName: self.avatarName, avatarColor: self.avatarColor, completion: { (success) in
+                            AuthService.instance.createUser(name: self.nameTxt.stringValue, email: self.emailTxt.stringValue, avatarName: self.avatarName, avatarColor: self.avatarColor, completion: { (success, msg) in
                                 self.waitForLogin(loginIn: false)
                                 NotificationCenter.default.post(name: NOTIF_USER_DATA_DID_CHANGE, object: nil)
                                 NotificationCenter.default.post(name: NOTIF_CLOSE_MODAL, object: nil)
                             })
                         } else {
                             debugPrint("Login user Failed")
-                            self.displayErrorMsg(msg: AuthService.instance.errorMsg)
+                            self.displayErrorMsg(msg: msg)
                             self.waitForLogin(loginIn: false)
                         }
                     })
                 } else {
-                    self.displayErrorMsg(msg: AuthService.instance.errorMsg)
+                    self.displayErrorMsg(msg: msg)
                     self.waitForLogin(loginIn: false)
                 }
             }

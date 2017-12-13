@@ -93,22 +93,22 @@ class ModalLogin: NSView {
     func loginUser(){
         if ( checkRequiredFields()) {
             waitForLogin(loginIn: true)
-            AuthService.instance.loginUser(email: userNameTxt.stringValue.lowercased(), password: passwordTxt.stringValue) { (success) in
+            AuthService.instance.loginUser(email: userNameTxt.stringValue.lowercased(), password: passwordTxt.stringValue) { (success, msg) in
                 if success {
-                    AuthService.instance.findUserByEmail(completion: { (success) in
+                    AuthService.instance.findUserByEmail(completion: { (success, msg) in
                         if success {
                             NotificationCenter.default.post(name: NOTIF_CLOSE_MODAL, object: nil)
                             NotificationCenter.default.post(name: NOTIF_USER_DATA_DID_CHANGE, object: nil)
                         } else {
                             Swift.debugPrint("Find user failed")
-                            self.displayErrorMsg(msg: AuthService.instance.errorMsg)
+                            self.displayErrorMsg(msg: msg)
                         }
                         self.waitForLogin(loginIn: false)
                     })
                 } else {
                     Swift.debugPrint("Login failed")
                     self.waitForLogin(loginIn: false)
-                    self.displayErrorMsg(msg: AuthService.instance.errorMsg)
+                    self.displayErrorMsg(msg: msg)
                 }
             }
         }

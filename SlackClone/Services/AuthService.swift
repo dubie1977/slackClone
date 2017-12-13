@@ -41,16 +41,16 @@ class AuthService{
         }
     }
     
-    var errorMsg: String{
-        get {
-            return defaults.value(forKey: ERROR_MSG) as! String
-        } set {
-            defaults.set(newValue, forKey: ERROR_MSG)
-        }
-    }
+//    var errorMsg: String{
+//        get {
+//            return defaults.value(forKey: ERROR_MSG) as! String
+//        } set {
+//            defaults.set(newValue, forKey: ERROR_MSG)
+//        }
+//    }
     
     
-    func registerUser(email: String, password: String, completion: @escaping CompleationHandeler) {
+    func registerUser(email: String, password: String, completion: @escaping CompleationHandelerWithMsg) {
         
         let lowerCaseEmail = email.lowercased()
 
@@ -63,22 +63,22 @@ class AuthService{
             (response) in
             if response.result.error == nil {
                 if response.response!.statusCode / 100 == 2{
-                    self.errorMsg = ""
-                    completion(true)
+//                    self.errorMsg = ""
+                    completion(true, "")
                 } else {
                     guard let data = response.data else { return }
-                    self.setErrorMsg(data: data)
+                    let errorMsg = self.setErrorMsg(data: data)
                     self.isLoggedIn = false
-                    completion(false)
+                    completion(false, errorMsg)
                 }
             } else {
-                completion(false)
+                completion(false, response.result.error!.localizedDescription)
                 debugPrint(response.result.error as Any)
             }
         }
     }
     
-    func loginUser(email: String, password: String, completion: @escaping CompleationHandeler){
+    func loginUser(email: String, password: String, completion: @escaping CompleationHandelerWithMsg){
         
         let lowerCaseEmail = email.lowercased()
 
@@ -97,28 +97,25 @@ class AuthService{
                         self.userEmail =  json["user"].stringValue
                         self.authToken =  json["token"].stringValue
                         self.isLoggedIn = true
-                        self.errorMsg = ""
-                        completion(true)
+                        completion(true, "")
                     } catch {
-                        debugPrint(error)
-                        return
+                        completion(false, error.localizedDescription)
                     }
                 } else {
                     guard let data = response.data else { return }
-                    self.setErrorMsg(data: data)
+                    let errorMsg = self.setErrorMsg(data: data)
                     self.isLoggedIn = false
-                    completion(false)
+                    completion(false, errorMsg)
                 }
                 
             } else {
-                completion(false)
-                debugPrint(response.result.error as Any)
+                completion(false, response.result.error!.localizedDescription)
                 
             }
         }
     }
     
-    func createUser(name: String, email: String, avatarName: String, avatarColor: String, completion: @escaping CompleationHandeler) {
+    func createUser(name: String, email: String, avatarName: String, avatarColor: String, completion: @escaping CompleationHandelerWithMsg) {
         
         let lowerCaseEmail = email.lowercased()
         
@@ -137,53 +134,50 @@ class AuthService{
                 if response.response!.statusCode / 100 == 2 {
                     guard let data = response.data else {return }
                     self.setUserInfo(data: data)
-                    self.errorMsg = ""
-                    completion(true)
+                    completion(true, "")
                 }else {
                     guard let data = response.data else { return }
-                    self.setErrorMsg(data: data)
+                    let errorMsg = self.setErrorMsg(data: data)
                     self.isLoggedIn = false
-                    completion(false)
+                    completion(false, errorMsg)
                 }
                 
             } else {
-                completion(false)
+                completion(false, response.result.error!.localizedDescription)
                 debugPrint(response.result.error as Any)
             }
         }
         
     }
     
-    func findUserByEmail(completion: @escaping CompleationHandeler){
+    func findUserByEmail(completion: @escaping CompleationHandelerWithMsg){
         Alamofire.request("\(URL_USER_BY_EMAIL)\(userEmail)", method: .get, parameters: nil, encoding: JSONEncoding.default, headers: BEARER_HEADER).responseJSON { (response) in
             if response.result.error == nil {
                 if response.response!.statusCode / 100 == 2 {
                     guard let data = response.data else {return}
                     self.setUserInfo(data: data)
-                    self.errorMsg = ""
-                    completion(true)
+                    completion(true, "")
                 }else {
                     guard let data = response.data else { return }
-                    self.setErrorMsg(data: data)
+                    let errorMsg = self.setErrorMsg(data: data)
                     self.isLoggedIn = false
-                    completion(false)
+                    completion(false, errorMsg)
                 }
                 
             } else {
-                completion(false)
+                completion(false, response.result.error!.localizedDescription)
                 debugPrint(response.result.error as Any)
             }
         }
     }
     
-    func setErrorMsg(data: Data){
+    func setErrorMsg(data: Data)-> String{
         do{
             let json = try JSON(data: data)
-            self.errorMsg = json["message"].stringValue
             self.isLoggedIn = false
-            debugPrint("ErrorMsg: \(self.errorMsg)")
+            return json["message"].stringValue
         } catch {
-            debugPrint(error)
+            return error.localizedDescription
         }
     }
     
