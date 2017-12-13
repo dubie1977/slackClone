@@ -70,6 +70,7 @@ class ChannelVC: NSViewController {
             getChannels()
         } else {
             userNameLbl.stringValue = ""
+            self.tableView.reloadData()
         }
     }
 }

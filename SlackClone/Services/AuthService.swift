@@ -41,14 +41,6 @@ class AuthService{
         }
     }
     
-//    var errorMsg: String{
-//        get {
-//            return defaults.value(forKey: ERROR_MSG) as! String
-//        } set {
-//            defaults.set(newValue, forKey: ERROR_MSG)
-//        }
-//    }
-    
     
     func registerUser(email: String, password: String, completion: @escaping CompleationHandelerWithMsg) {
         
@@ -63,7 +55,6 @@ class AuthService{
             (response) in
             if response.result.error == nil {
                 if response.response!.statusCode / 100 == 2{
-//                    self.errorMsg = ""
                     completion(true, "")
                 } else {
                     guard let data = response.data else { return }
