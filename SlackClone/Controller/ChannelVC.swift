@@ -15,6 +15,10 @@ class ChannelVC: NSViewController {
     @IBOutlet weak var userNameLbl: NSTextField!
     @IBOutlet weak var tableView: NSTableView!
     
+    // Variables
+    var selectedChannelIndex = 0
+    var selectedChannel: Channel?
+    var chatVC: ChatVC?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +28,10 @@ class ChannelVC: NSViewController {
     
     override func viewWillAppear() {
         setupView()
-        
+    }
+    
+    override func viewDidAppear() {
+        chatVC = self.view.window?.contentViewController?.childViewControllers[0].childViewControllers[1] as? ChatVC
     }
     
     func setupView(){
@@ -32,6 +39,7 @@ class ChannelVC: NSViewController {
         
         view.wantsLayer = true
         view.layer?.backgroundColor = chatPurple.cgColor
+        
         
         userNameLbl.stringValue = ""
         addChannelBtn.styleButtonText(button: addChannelBtn, buttonName: "Add +", fontColor: .controlColor, alignment: .center, font: AVENIR_REGULAR, size: 13.0)
@@ -54,8 +62,8 @@ class ChannelVC: NSViewController {
         MessageService.instance.findAllChannels { (success, msg) in
             if success {
                 self.tableView.reloadData()
-                //for channel in MessageService.instance.channels{
-                //}
+                let channel = MessageService.instance.channels[0]
+                self.chatVC?.updateWithChannel(channel: channel)
             } else {
                 debugPrint(msg)
             }
@@ -85,11 +93,24 @@ extension ChannelVC: NSTableViewDelegate, NSTableViewDataSource {
         let channel = MessageService.instance.channels[row]
         
         if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "channelCell"), owner: nil) as? ChannelCell{
-            
-            cell.configureCell(channel: channel)
+            var isSelected = false
+            if row == selectedChannelIndex{
+                isSelected = true
+            } else {
+                isSelected = false
+            }
+                cell.configureCell(channel: channel, isSelected: isSelected)
             return cell
         }
         return NSTableCellView()
+    }
+    
+    func tableViewSelectionDidChange(_ notification: Notification) {
+        selectedChannelIndex = tableView.selectedRow
+        let channel = MessageService.instance.channels[selectedChannelIndex]
+        selectedChannel = channel
+        chatVC?.updateWithChannel(channel: channel)
+        tableView.reloadData()
     }
     
     func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {

@@ -17,10 +17,20 @@ class ChannelCell: NSTableCellView {
 
     }
     
-    func configureCell(channel: Channel){
+    func configureCell(channel: Channel, isSelected: Bool){
         let title = channel.channelTitle ?? ""
         channelName.stringValue = "#\(title)"
         channelName.font = NSFont(name: AVENIR_REGULAR, size: 13.0)
+        
+        wantsLayer = true
+        if isSelected{
+            layer?.backgroundColor = chatGreen.cgColor
+            channelName.textColor = NSColor.white
+        }else{
+            layer?.backgroundColor = CGColor.clear
+            channelName.textColor = NSColor.controlColor
+        }
+        
     }
     
 }

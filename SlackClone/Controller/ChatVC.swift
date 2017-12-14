@@ -19,7 +19,9 @@ class ChatVC: NSViewController {
     @IBOutlet weak var messageTxt: NSTextField!
     @IBOutlet weak var sendMessageBtn: NSButton!
     
+    // Variables
     let user = UserDataService.instance
+    var channel: Channel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,6 +56,16 @@ class ChatVC: NSViewController {
         } else {
             messageTxt.isEditable = false
         }
+    }
+    
+    func updateWithChannel(channel: Channel){
+        typingUserLbl.stringValue = ""
+        self.channel = channel
+        let channelName = channel.channelTitle ?? ""
+        let channelDesc = channel.channelDescription ?? ""
+        
+        channelDescriptionLbl.stringValue = channelDesc
+        channelTitileLbl.stringValue = "#\(channelName)"
     }
     
     @IBAction func sendMessageButtonClicked(_ sender: Any) {
