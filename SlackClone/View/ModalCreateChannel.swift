@@ -88,6 +88,8 @@ class ModalCreateChannel: NSView {
         if checkRequiredFields() {
             SocketService.instance.addChannel(channelName: channelNameTxt.stringValue, channelDescription: channelDiscription.stringValue, compleation: { (success, msg) in
                 if success {
+                    let channelVC = self.view.window?.contentViewController?.childViewControllers[0].childViewControllers[0] as? ChannelVC
+                    channelVC?.getChannels()
                     NotificationCenter.default.post(name: NOTIF_CLOSE_MODAL, object: nil)
                 } else {
                     if msg.count > 0 {

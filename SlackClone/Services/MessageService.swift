@@ -21,6 +21,7 @@ class MessageService{
                 if response.response!.statusCode / 100 == 2 {
                     guard let data = response.data else {return}
                     do{
+                        self.channels = [Channel]()
                         if let json = try JSON(data: data).array {
                             for item in json {
                                 let name = item["name"].stringValue
@@ -38,7 +39,7 @@ class MessageService{
                     }
                 }else {
                     guard let data = response.data else { return }
-                    var error = self.setErrorMsg(data: data)
+                    let error = self.setErrorMsg(data: data)
                     compleation(false, error)
                     debugPrint(response.result.error as Any)
                 }
