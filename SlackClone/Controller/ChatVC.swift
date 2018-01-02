@@ -66,11 +66,27 @@ class ChatVC: NSViewController {
         
         channelDescriptionLbl.stringValue = channelDesc
         channelTitileLbl.stringValue = "#\(channelName)"
+        getChats()
+    }
+    
+    func getChats(){
+        guard let channelId = self.channel?.id else { return }
+        MessageService.instance.findAllMessagesForChannel(channelId: channelId) { (success, msg) in
+            if success {
+                
+                //TODO - Remove
+                for message in MessageService.instance.messages{
+                    print(message.messageBody)
+                }
+            } else {
+                //TODO - Do something on error
+            }
+        }
     }
     
     @IBAction func sendMessageButtonClicked(_ sender: Any) {
         print("send message clicked")
-        let channelId = "592cd40e39179c0023f3531f"
+        guard let channelId = channel?.id else { return }
         
         if AuthService.instance.isLoggedIn {
             SocketService.instance.addMessage(messageBody: messageTxt.stringValue, userId: user.id, channelId: channelId, compleation: { (success) in
