@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8C0DE63D1FFAF2110072C977 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0DE63C1FFAF2110072C977 /* Message.swift */; };
+		8C0DE63F1FFB5AD00072C977 /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0DE63E1FFB5AD00072C977 /* ChatCell.swift */; };
 		8CC795991FB54DF000AFB2DD /* ModalCreateAccount.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CC795981FB54DF000AFB2DD /* ModalCreateAccount.xib */; };
 		8CC7959B1FB54E0700AFB2DD /* ModalCreateAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC7959A1FB54E0700AFB2DD /* ModalCreateAccount.swift */; };
 		8CCA6DE41FB4CB93009C2F08 /* ClickBlockingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCA6DE31FB4CB93009C2F08 /* ClickBlockingView.swift */; };
@@ -43,6 +44,7 @@
 		55EE0D6CC6704B2DC143D310 /* Pods-SlackClone.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SlackClone.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SlackClone/Pods-SlackClone.debug.xcconfig"; sourceTree = "<group>"; };
 		751331BC80193D2E55E7FCD4 /* Pods_SlackClone.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SlackClone.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C0DE63C1FFAF2110072C977 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		8C0DE63E1FFB5AD00072C977 /* ChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
 		8CC795981FB54DF000AFB2DD /* ModalCreateAccount.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ModalCreateAccount.xib; sourceTree = "<group>"; };
 		8CC7959A1FB54E0700AFB2DD /* ModalCreateAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalCreateAccount.swift; sourceTree = "<group>"; };
 		8CCA6DE31FB4CB93009C2F08 /* ClickBlockingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClickBlockingView.swift; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 				C1F0A5CE1FC62400008E3F0C /* ModalProfile.swift */,
 				C1131CA51FCF28C0002E8E84 /* ModalCreateChannel.swift */,
 				C1131CB41FDB052B002E8E84 /* ChannelCell.swift */,
+				8C0DE63E1FFB5AD00072C977 /* ChatCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -371,6 +374,7 @@
 				C1131CB51FDB052B002E8E84 /* ChannelCell.swift in Sources */,
 				C15A73231FBA5BB800830756 /* AuthService.swift in Sources */,
 				C15A73251FBE5E2A00830756 /* UserDataService.swift in Sources */,
+				8C0DE63F1FFB5AD00072C977 /* ChatCell.swift in Sources */,
 				C1131CA61FCF28C0002E8E84 /* ModalCreateChannel.swift in Sources */,
 				8CCA6DE41FB4CB93009C2F08 /* ClickBlockingView.swift in Sources */,
 				C1CB80191FB23C30002DAD97 /* AppDelegate.swift in Sources */,

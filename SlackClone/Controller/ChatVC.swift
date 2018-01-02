@@ -25,6 +25,8 @@ class ChatVC: NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.dataSource = self
+        tableView.delegate = self
         
     }
     
@@ -73,15 +75,14 @@ class ChatVC: NSViewController {
         guard let channelId = self.channel?.id else { return }
         MessageService.instance.findAllMessagesForChannel(channelId: channelId) { (success, msg) in
             if success {
-                
-                //TODO - Remove
-                for message in MessageService.instance.messages{
-                    print(message.messageBody)
-                }
+                self.tableView.reloadData()
             } else {
                 //TODO - Do something on error
             }
         }
+    }
+    @IBAction func sendMessageOnEnter(_ sender: Any) {
+        sendMessageBtn.performClick(nil)
     }
     
     @IBAction func sendMessageButtonClicked(_ sender: Any) {
@@ -92,6 +93,7 @@ class ChatVC: NSViewController {
             SocketService.instance.addMessage(messageBody: messageTxt.stringValue, userId: user.id, channelId: channelId, compleation: { (success) in
                 if success {
                     self.messageTxt.stringValue = ""
+                    self.getChats()
                 }
             })
         } else {
@@ -111,5 +113,28 @@ class ChatVC: NSViewController {
         setTextField()
     }
     
+}
+
+extension ChatVC: NSTableViewDelegate, NSTableViewDataSource{
+    
+    func numberOfRows(in tableView: NSTableView) -> Int {
+        return MessageService.instance.messages.count
+    }
+    
+    func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
+        if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "chatCell"), owner: nil) as? ChatCell {
+            let chat = MessageService.instance.messages[row]
+            cell.configureCell(chat: chat)
+            return cell
+        } else {
+            return NSTableCellView()
+        }
+    }
+    
+    func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
+        return 100.0
+    }
     
 }
+
+
