@@ -30,8 +30,20 @@ class ChatCell: NSTableCellView {
         profileImg.image = NSImage(named: NSImage.Name(rawValue: chat.userAvatar!))
         profileImg.layer?.backgroundColor = UserDataService.instance.returnCGColor(components: chat.userAvatarColer)
         
-        //TODO - Fix time format
-        timeStampLbl.stringValue = chat.timeStamp
+        guard let isoDateFull = chat.timeStamp else { return }
+        let end = isoDateFull.index(isoDateFull.endIndex, offsetBy: -6)
+        let isoDate = isoDateFull[...end].appending("Z")
+        
+        let isoFormatter = ISO8601DateFormatter()
+        let chatDate = isoFormatter.date(from: isoDate)
+        
+        let newFormatter = DateFormatter()
+        newFormatter.dateFormat = "MMM d, h:mm a"
+        
+        if let finalDate = chatDate{
+            let finalDate = newFormatter.string(from: finalDate)
+            timeStampLbl.stringValue = finalDate
+        }
     }
     
 }

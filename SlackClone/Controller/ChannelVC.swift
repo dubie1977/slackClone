@@ -62,8 +62,11 @@ class ChannelVC: NSViewController {
         MessageService.instance.findAllChannels { (success, msg) in
             if success {
                 self.tableView.reloadData()
-                let channel = MessageService.instance.channels[0]
-                self.chatVC?.updateWithChannel(channel: channel)
+                if MessageService.instance.channels.count > 0 {
+                    self.tableView.selectRowIndexes(IndexSet(integer: self.selectedChannelIndex), byExtendingSelection: false)
+                }
+                //let channel = MessageService.instance.channels[0]
+                //self.chatVC?.updateWithChannel(channel: channel)
             } else {
                 debugPrint(msg)
             }
