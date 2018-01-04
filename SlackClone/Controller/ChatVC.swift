@@ -37,6 +37,22 @@ class ChatVC: NSViewController {
     
     func setupView(){
         NotificationCenter.default.addObserver(self, selector: #selector(ChatVC.userDataDidChange(_:)), name: NOTIF_USER_DATA_DID_CHANGE, object: nil)
+        SocketService.instance.getMessages { (message) in
+            guard let channelId = self.channel?.id else { return }
+            if channelId == message.channelId {
+                MessageService.instance.messages.append(message)
+                self.tableView.reloadData()
+                self.tableView.scrollRowToVisible(MessageService.instance.messages.count - 1)
+            } else {
+                //Ignore - Not the current channel
+            }
+        }
+        
+        if AuthService.instance.isLoggedIn == false {
+            channelTitileLbl.stringValue = "Please Login"
+            channelDescriptionLbl.stringValue = ""
+            typingUserLbl.stringValue = ""
+        }
         
         view.wantsLayer = true
         view.layer?.backgroundColor = CGColor.white
@@ -76,6 +92,11 @@ class ChatVC: NSViewController {
         MessageService.instance.findAllMessagesForChannel(channelId: channelId) { (success, msg) in
             if success {
                 self.tableView.reloadData()
+                let msgCount = MessageService.instance.messages.count
+                if msgCount > 1 {
+                    self.tableView.scrollRowToVisible(MessageService.instance.messages.count - 1)
+                }
+                
             } else {
                 //TODO - Do something on error
             }
@@ -93,7 +114,6 @@ class ChatVC: NSViewController {
             SocketService.instance.addMessage(messageBody: messageTxt.stringValue, userId: user.id, channelId: channelId, compleation: { (success) in
                 if success {
                     self.messageTxt.stringValue = ""
-                    self.getChats()
                 }
             })
         } else {
@@ -104,11 +124,18 @@ class ChatVC: NSViewController {
     
     @objc func userDataDidChange(_ notif: Notification){
         if AuthService.instance.isLoggedIn {
-            channelTitileLbl.stringValue = "#General"
-            channelDescriptionLbl.stringValue = "Main channel"
+            if let channel = self.channel {
+                channelTitileLbl.stringValue = channel.channelTitle
+                channelDescriptionLbl.stringValue = channel.channelDescription
+            } else {
+                channelTitileLbl.stringValue = "Please select a channel"
+            }
+            
         } else {
             channelTitileLbl.stringValue = "Please Login"
             channelDescriptionLbl.stringValue = ""
+            typingUserLbl.stringValue = ""
+            tableView.reloadData()
         }
         setTextField()
     }

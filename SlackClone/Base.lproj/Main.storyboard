@@ -1080,6 +1080,9 @@
                             </customView>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="G4P-YG-Trc">
                                 <rect key="frame" x="405" y="31" width="35" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="35" id="R6L-Ih-FOV"/>
+                                </constraints>
                                 <buttonCell key="cell" type="bevel" title="Send" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="LyY-QB-jDS">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>

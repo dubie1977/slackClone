@@ -58,6 +58,23 @@ class SocketService: NSObject {
         }
     }
     
+    func getMessages(_ completionHandler: @escaping (_ newMessage: Message) -> Void){
+        socket.on("messageCreated") { (dataArray, socketAck) in
+            guard let messageBody = dataArray[0] as? String else { return }
+            guard let userId = dataArray[1] as? String else { return }
+            guard let channelId = dataArray[2] as? String else { return }
+            guard let userName = dataArray[3] as? String else { return }
+            guard let userAvatar = dataArray[4] as? String else { return }
+            guard let userAvatarColor = dataArray[5] as? String else { return }
+            guard let id = dataArray[6] as? String else { return }
+            guard let timeStamp = dataArray[7] as? String else { return }
+            
+            let newMessage = Message(id: id, messageBody: messageBody, userId: userId, channelId: channelId, userName: userName, userAvatar: userAvatar, userAvatarColer: userAvatarColor, timeStamp: timeStamp)
+            
+            completionHandler(newMessage)
+        }
+    }
+    
     func doseChannelExist(channelName: String)-> Bool{
 
         for channel in message.channels{
