@@ -37,7 +37,16 @@ class ChannelVC: NSViewController {
             if MessageService.instance.channels.count > 0 {
                 self.tableView.selectRowIndexes(IndexSet(integer: self.selectedChannelIndex), byExtendingSelection: false)
             }
-            
+        }
+        
+        SocketService.instance.getMessages { (newMessage) in
+            guard let currentChannelId = self.selectedChannel?.id else { return }
+            if newMessage.channelId != currentChannelId && AuthService.instance.isLoggedIn {
+                if MessageService.instance.unReadChannels.index(of: newMessage.channelId) == nil {
+                    MessageService.instance.unReadChannels.append(newMessage.channelId)
+                    self.tableView.reloadData()
+                }
+            }
         }
     }
     
@@ -120,6 +129,11 @@ extension ChannelVC: NSTableViewDelegate, NSTableViewDataSource {
         let channel = MessageService.instance.channels[selectedChannelIndex]
         selectedChannel = channel
         chatVC?.updateWithChannel(channel: channel)
+        
+        if let index = MessageService.instance.unReadChannels.index(of: channel.id) {
+            MessageService.instance.unReadChannels.remove(at: index)
+        }
+        
         tableView.reloadData()
     }
     

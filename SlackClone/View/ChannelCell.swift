@@ -22,6 +22,12 @@ class ChannelCell: NSTableCellView {
         channelName.stringValue = "#\(title)"
         channelName.font = NSFont(name: AVENIR_REGULAR, size: 13.0)
         
+        if MessageService.instance.unReadChannels.index(of: channel.id) != nil {
+            channelName.font = NSFont(name: AVENIR_BOLD, size: 13.0)
+        } else {
+            channelName.font = NSFont(name: AVENIR_REGULAR, size: 13.0)
+        }
+        
         wantsLayer = true
         if isSelected{
             layer?.backgroundColor = chatGreen.cgColor
