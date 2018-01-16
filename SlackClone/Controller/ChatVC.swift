@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class ChatVC: NSViewController {
+class ChatVC: NSViewController, NSTextFieldDelegate {
 
     // Outlets
     @IBOutlet weak var channelTitileLbl: NSTextField!
@@ -22,11 +22,13 @@ class ChatVC: NSViewController {
     // Variables
     let user = UserDataService.instance
     var channel: Channel?
+    var isTyping = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
+        messageTxt.delegate = self
         
     }
     
@@ -87,6 +89,19 @@ class ChatVC: NSViewController {
         getChats()
     }
     
+    override func controlTextDidChange(_ obj: Notification) {
+        guard let channelId = channel?.id else { return }
+        if messageTxt.stringValue == "" {
+            isTyping = false
+            SocketService.instance.socket.emit("stopType", user.name, channelId)
+        } else {
+            if isTyping == false {
+                SocketService.instance.socket.emit("startType", user.name, channelId)
+            }
+            isTyping = true
+        }
+    }
+    
     func getChats(){
         guard let channelId = self.channel?.id else { return }
         MessageService.instance.findAllMessagesForChannel(channelId: channelId) { (success, msg) in
@@ -114,6 +129,7 @@ class ChatVC: NSViewController {
             SocketService.instance.addMessage(messageBody: messageTxt.stringValue, userId: user.id, channelId: channelId, compleation: { (success) in
                 if success {
                     self.messageTxt.stringValue = ""
+                    SocketService.instance.socket.emit("stopType", self.user.name, channelId)
                 }
             })
         } else {
