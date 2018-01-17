@@ -50,6 +50,29 @@ class ChatVC: NSViewController, NSTextFieldDelegate {
             }
         }
         
+        SocketService.instance.getTypingUsers { (typingUsers) in
+            guard let channelId = self.channel?.id else { return }
+            var names = ""
+            var numberOfTypers = 0
+            
+            for (typingUser, channel) in typingUsers {
+                if typingUser != self.user.name && channel == channelId {
+                    if numberOfTypers == 0{
+                        names = typingUser
+                    } else if numberOfTypers < typingUsers.capacity-1 {
+                        names = "\(names), \(typingUser)"
+                    } else {
+                        names = "\(names) and \(typingUser) are typing"
+                    }
+                    numberOfTypers = numberOfTypers+1
+                }
+                if numberOfTypers == 1 {
+                    names = "\(names) is typing"
+                }
+            }
+            self.typingUserLbl.stringValue = names
+        }
+        
         if AuthService.instance.isLoggedIn == false {
             channelTitileLbl.stringValue = "Please Login"
             channelDescriptionLbl.stringValue = ""
