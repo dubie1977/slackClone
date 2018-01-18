@@ -24,6 +24,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationWillTerminate(_ aNotification: Notification) {
         SocketService.instance.closeConnection()
     }
+    
+    func applicationWillHide(_ notification: Notification) {
+        UserDataService.instance.isMinimizing = true
+    }
+    
+    func applicationDidUnhide(_ notification: Notification) {
+        UserDataService.instance.isMinimizing = false
+    }
 
 
 }

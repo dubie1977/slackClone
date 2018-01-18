@@ -31,6 +31,9 @@ class ToolbarVC: NSViewController {
     }
     
     override func viewWillAppear() {
+        if UserDataService.instance.isMinimizing {
+            return
+        }
         setupView()
     }
     

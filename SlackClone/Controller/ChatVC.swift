@@ -33,6 +33,9 @@ class ChatVC: NSViewController, NSTextFieldDelegate {
     }
     
     override func viewWillAppear() {
+        if UserDataService.instance.isMinimizing {
+            return
+        }
         setupView()
         
     }

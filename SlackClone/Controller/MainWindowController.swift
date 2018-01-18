@@ -8,15 +8,23 @@
 
 import Cocoa
 
-class MainWindowController: NSWindowController {
+class MainWindowController: NSWindowController, NSWindowDelegate {
 
     override func windowDidLoad() {
         super.windowDidLoad()
         window?.titlebarAppearsTransparent = true
         window?.titleVisibility = .hidden
+        window?.delegate = self
         AuthService.instance.isLoggedIn = false
     
-        // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
+    }
+    
+    func windowWillMiniaturize(_ notification: Notification) {
+        UserDataService.instance.isMinimizing = true
+    }
+    
+    func windowDidMiniaturize(_ notification: Notification) {
+        UserDataService.instance.isMinimizing = false
     }
 
 }

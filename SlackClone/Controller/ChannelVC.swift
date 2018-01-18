@@ -27,10 +27,16 @@ class ChannelVC: NSViewController {
     }
     
     override func viewWillAppear() {
+        if UserDataService.instance.isMinimizing {
+            return
+        }
         setupView()
     }
     
     override func viewDidAppear() {
+        if UserDataService.instance.isMinimizing {
+            return
+        }
         chatVC = self.view.window?.contentViewController?.childViewControllers[0].childViewControllers[1] as? ChatVC
         SocketService.instance.getChannel { (success) in
             self.tableView.reloadData()
