@@ -28,6 +28,7 @@ class ToolbarVC: NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.setFrameSize(NSSize(width: 950, height: 600))
     }
     
     override func viewWillAppear() {

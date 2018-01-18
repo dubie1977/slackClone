@@ -32,6 +32,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidUnhide(_ notification: Notification) {
         UserDataService.instance.isMinimizing = false
     }
+    
+    func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
+        return true
+    }
 
 
 }

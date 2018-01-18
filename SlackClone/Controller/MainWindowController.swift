@@ -15,6 +15,7 @@ class MainWindowController: NSWindowController, NSWindowDelegate {
         window?.titlebarAppearsTransparent = true
         window?.titleVisibility = .hidden
         window?.delegate = self
+        window?.minSize = NSMakeSize(500, 350)
         AuthService.instance.isLoggedIn = false
     
     }
