@@ -54,21 +54,25 @@ class ChatVC: NSViewController, NSTextFieldDelegate {
             guard let channelId = self.channel?.id else { return }
             var names = ""
             var numberOfTypers = 0
+            var count = 1
             
             for (typingUser, channel) in typingUsers {
                 if typingUser != self.user.name && channel == channelId {
                     if numberOfTypers == 0{
                         names = typingUser
-                    } else if numberOfTypers < typingUsers.capacity-1 {
-                        names = "\(names), \(typingUser)"
-                    } else {
+                    } else if count == typingUsers.count {
                         names = "\(names) and \(typingUser) are typing"
+                    }else if (count == typingUsers.count-1 && Array(typingUsers.keys)[count] == self.user.name){
+                        names = "\(names) and \(typingUser) are typing"
+                    } else {
+                        names = "\(names), \(typingUser)"
                     }
                     numberOfTypers = numberOfTypers+1
                 }
-                if numberOfTypers == 1 {
-                    names = "\(names) is typing"
-                }
+                count = count + 1
+            }
+            if numberOfTypers == 1 {
+                names = "\(names) is typing"
             }
             self.typingUserLbl.stringValue = names
         }
@@ -145,7 +149,6 @@ class ChatVC: NSViewController, NSTextFieldDelegate {
     }
     
     @IBAction func sendMessageButtonClicked(_ sender: Any) {
-        print("send message clicked")
         guard let channelId = channel?.id else { return }
         
         if AuthService.instance.isLoggedIn {
