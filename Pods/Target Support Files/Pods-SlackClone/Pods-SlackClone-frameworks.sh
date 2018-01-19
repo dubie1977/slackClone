@@ -107,6 +107,12 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/StarscreamSocketIO/StarscreamSocketIO.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework"
 fi
+if [[ "$CONFIGURATION" == "Development" ]]; then
+  install_framework "${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/Socket.IO-Client-Swift/SocketIO.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/StarscreamSocketIO/StarscreamSocketIO.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework"
+fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Socket.IO-Client-Swift/SocketIO.framework"

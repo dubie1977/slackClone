@@ -38,8 +38,11 @@ class ModalLogin: NSView {
     }
 
     func setupView(){
-        #if DEVELOPMENT || DEBUG
+        #if DEBUG
             userNameTxt.stringValue = "luke@me.com"
+            passwordTxt.stringValue = "1234"
+        #elseif DEVELOPMENT
+            userNameTxt.stringValue = "lando@me.com"
             passwordTxt.stringValue = "1234"
         #endif
         

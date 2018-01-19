@@ -234,11 +234,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SlackClone/View/ModalLogin.swift"
-            timestampString = "538015314.991562"
+            timestampString = "538078844.508149"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "104"
-            endingLineNumber = "104"
+            startingLineNumber = "107"
+            endingLineNumber = "107"
             landmarkName = "loginUser()"
             landmarkType = "7">
          </BreakpointContent>
@@ -250,11 +250,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SlackClone/View/ModalLogin.swift"
-            timestampString = "538015314.99166"
+            timestampString = "538078844.5082099"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "102"
-            endingLineNumber = "102"
+            startingLineNumber = "105"
+            endingLineNumber = "105"
             landmarkName = "loginUser()"
             landmarkType = "7">
          </BreakpointContent>
@@ -310,11 +310,11 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SlackClone/Controller/ChatVC.swift"
-            timestampString = "538016239.265193"
+            timestampString = "538078568.802406"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "76"
@@ -330,7 +330,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SlackClone/Controller/ChatVC.swift"
-            timestampString = "538016239.265861"
+            timestampString = "538078568.803022"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "62"
@@ -342,11 +342,11 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SlackClone/Controller/ChatVC.swift"
-            timestampString = "538016239.266288"
+            timestampString = "538078568.803398"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "81"
@@ -355,14 +355,14 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "SlackClone.ChatVC.setupView() -&gt; ()"
                   moduleName = "SlackClone"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/dubie/Documents/macOS/SlackClone/SlackClone/Controller/ChatVC.swift"
-                  timestampString = "538016136.129178"
+                  timestampString = "538078539.686992"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "81"
@@ -370,14 +370,14 @@
                   offsetFromSymbolStart = "855">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "closure #2 (Swift.Dictionary&lt;Swift.String, Swift.String&gt;) -&gt; () in SlackClone.ChatVC.setupView() -&gt; ()"
                   moduleName = "SlackClone"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/dubie/Documents/macOS/SlackClone/SlackClone/Controller/ChatVC.swift"
-                  timestampString = "538016136.133507"
+                  timestampString = "538078539.691759"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "81"
@@ -385,6 +385,22 @@
                   offsetFromSymbolStart = "6757">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SlackClone/View/ModalLogin.swift"
+            timestampString = "538078844.508311"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
+            landmarkName = "setupView()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
