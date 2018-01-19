@@ -234,11 +234,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SlackClone/View/ModalLogin.swift"
-            timestampString = "534887781.954069"
+            timestampString = "538015314.991562"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "99"
-            endingLineNumber = "99"
+            startingLineNumber = "104"
+            endingLineNumber = "104"
             landmarkName = "loginUser()"
             landmarkType = "7">
          </BreakpointContent>
@@ -250,11 +250,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SlackClone/View/ModalLogin.swift"
-            timestampString = "534887781.954117"
+            timestampString = "538015314.99166"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "97"
-            endingLineNumber = "97"
+            startingLineNumber = "102"
+            endingLineNumber = "102"
             landmarkName = "loginUser()"
             landmarkType = "7">
          </BreakpointContent>
@@ -282,7 +282,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SlackClone/Services/SocketService.swift"
-            timestampString = "534887781.954278"
+            timestampString = "538015590.183615"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "50"
@@ -298,7 +298,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SlackClone/Services/SocketService.swift"
-            timestampString = "534887781.954347"
+            timestampString = "538015590.184155"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "51"
@@ -314,7 +314,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SlackClone/Controller/ChatVC.swift"
-            timestampString = "537995433.440066"
+            timestampString = "538016239.265193"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "76"
@@ -330,7 +330,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SlackClone/Controller/ChatVC.swift"
-            timestampString = "537995433.440177"
+            timestampString = "538016239.265861"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "62"
@@ -346,13 +346,45 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SlackClone/Controller/ChatVC.swift"
-            timestampString = "537995433.440241"
+            timestampString = "538016239.266288"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "81"
             endingLineNumber = "81"
             landmarkName = "setupView()"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SlackClone.ChatVC.setupView() -&gt; ()"
+                  moduleName = "SlackClone"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dubie/Documents/macOS/SlackClone/SlackClone/Controller/ChatVC.swift"
+                  timestampString = "538016136.129178"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "81"
+                  endingLineNumber = "81"
+                  offsetFromSymbolStart = "855">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (Swift.Dictionary&lt;Swift.String, Swift.String&gt;) -&gt; () in SlackClone.ChatVC.setupView() -&gt; ()"
+                  moduleName = "SlackClone"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dubie/Documents/macOS/SlackClone/SlackClone/Controller/ChatVC.swift"
+                  timestampString = "538016136.133507"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "81"
+                  endingLineNumber = "81"
+                  offsetFromSymbolStart = "6757">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

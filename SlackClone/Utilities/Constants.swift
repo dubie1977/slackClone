@@ -34,6 +34,7 @@ let USER_EMAIL = "userEmail"
 let ERROR_MSG = "errorMsg"
 
 // URL
+//let BASE_URL = Bundle.main.object(forInfoDictionaryKey: "BASE_URL") as! String
 let BASE_URL = "https://slackclone1977-2.herokuapp.com/v1/"
 let URL_REGISTER = "\(BASE_URL)account/register"
 let URL_LOGIN = "\(BASE_URL)account/login"
