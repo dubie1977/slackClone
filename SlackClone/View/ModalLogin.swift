@@ -38,6 +38,14 @@ class ModalLogin: NSView {
     }
 
     func setupView(){
+        #if DEBUG
+            userNameTxt.stringValue = "luke@me.com"
+            passwordTxt.stringValue = "1234"
+        #elseif DEVELOPMENT
+            userNameTxt.stringValue = "lando@me.com"
+            passwordTxt.stringValue = "1234"
+        #endif
+        
         self.view.frame = NSRect(x: 0, y: 0, width: 475, height: 300)
         view.layer?.backgroundColor = CGColor.white
         view.layer?.cornerRadius = 7

@@ -27,10 +27,16 @@ class ChannelVC: NSViewController {
     }
     
     override func viewWillAppear() {
+        if UserDataService.instance.isMinimizing {
+            return
+        }
         setupView()
     }
     
     override func viewDidAppear() {
+        if UserDataService.instance.isMinimizing {
+            return
+        }
         chatVC = self.view.window?.contentViewController?.childViewControllers[0].childViewControllers[1] as? ChatVC
         SocketService.instance.getChannel { (success) in
             self.tableView.reloadData()
@@ -64,7 +70,6 @@ class ChannelVC: NSViewController {
     }
     
     @IBAction func addChannelButtonClicked(_ sender: Any) {
-        print("add channel clicked")
         if AuthService.instance.isLoggedIn {
             let modalDict = [USER_INFO_MODAL: ModalType.createChannel]
             NotificationCenter.default.post(name: NOTIF_PRESENT_MODAL, object: nil, userInfo: modalDict)

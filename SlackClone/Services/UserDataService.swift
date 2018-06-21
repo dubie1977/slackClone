@@ -17,6 +17,16 @@ class UserDataService {
     fileprivate var _avatarName = ""
     fileprivate var _email = ""
     fileprivate var _name = ""
+    fileprivate var _isMinimizing = false
+    
+    var isMinimizing: Bool {
+        get {
+            return _isMinimizing
+        }
+        set {
+            _isMinimizing = newValue
+        }
+    }
     
     var id: String {
         get {

@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class ChatVC: NSViewController {
+class ChatVC: NSViewController, NSTextFieldDelegate {
 
     // Outlets
     @IBOutlet weak var channelTitileLbl: NSTextField!
@@ -22,15 +22,20 @@ class ChatVC: NSViewController {
     // Variables
     let user = UserDataService.instance
     var channel: Channel?
+    var isTyping = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
+        messageTxt.delegate = self
         
     }
     
     override func viewWillAppear() {
+        if UserDataService.instance.isMinimizing {
+            return
+        }
         setupView()
         
     }
@@ -46,6 +51,33 @@ class ChatVC: NSViewController {
             } else {
                 //Ignore - Not the current channel
             }
+        }
+        
+        SocketService.instance.getTypingUsers { (typingUsers) in
+            guard let channelId = self.channel?.id else { return }
+            var names = ""
+            var numberOfTypers = 0
+            var count = 1
+            
+            for (typingUser, channel) in typingUsers {
+                if typingUser != self.user.name && channel == channelId {
+                    if numberOfTypers == 0{
+                        names = typingUser
+                    } else if count == typingUsers.count {
+                        names = "\(names) and \(typingUser) are typing"
+                    }else if (count == typingUsers.count-1 && Array(typingUsers.keys)[count] == self.user.name){
+                        names = "\(names) and \(typingUser) are typing"
+                    } else {
+                        names = "\(names), \(typingUser)"
+                    }
+                    numberOfTypers = numberOfTypers+1
+                }
+                count = count + 1
+            }
+            if numberOfTypers == 1 {
+                names = "\(names) is typing"
+            }
+            self.typingUserLbl.stringValue = names
         }
         
         if AuthService.instance.isLoggedIn == false {
@@ -87,6 +119,19 @@ class ChatVC: NSViewController {
         getChats()
     }
     
+    override func controlTextDidChange(_ obj: Notification) {
+        guard let channelId = channel?.id else { return }
+        if messageTxt.stringValue == "" {
+            isTyping = false
+            SocketService.instance.socket.emit("stopType", user.name, channelId)
+        } else {
+            if isTyping == false {
+                SocketService.instance.socket.emit("startType", user.name, channelId)
+            }
+            isTyping = true
+        }
+    }
+    
     func getChats(){
         guard let channelId = self.channel?.id else { return }
         MessageService.instance.findAllMessagesForChannel(channelId: channelId) { (success, msg) in
@@ -107,13 +152,13 @@ class ChatVC: NSViewController {
     }
     
     @IBAction func sendMessageButtonClicked(_ sender: Any) {
-        print("send message clicked")
         guard let channelId = channel?.id else { return }
         
         if AuthService.instance.isLoggedIn {
             SocketService.instance.addMessage(messageBody: messageTxt.stringValue, userId: user.id, channelId: channelId, compleation: { (success) in
                 if success {
                     self.messageTxt.stringValue = ""
+                    SocketService.instance.socket.emit("stopType", self.user.name, channelId)
                 }
             })
         } else {

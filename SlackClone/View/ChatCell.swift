@@ -33,10 +33,17 @@ class ChatCell: NSTableCellView {
         guard let isoDateFull = chat.timeStamp else { return }
         let end = isoDateFull.index(isoDateFull.endIndex, offsetBy: -6)
         let isoDate = isoDateFull[...end].appending("Z")
+        let chatDate: Date?
         
-        let isoFormatter = ISO8601DateFormatter()
-        let chatDate = isoFormatter.date(from: isoDate)
-        
+        if #available(OSX 10.12, *) {
+            let isoFormatter = ISO8601DateFormatter()
+            chatDate = isoFormatter.date(from: isoDate)
+        } else {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ" //iso 8601
+            chatDate = dateFormatter.date(from: isoDate)
+        }
+
         let newFormatter = DateFormatter()
         newFormatter.dateFormat = "MMM d, h:mm a"
         
